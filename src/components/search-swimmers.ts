@@ -18,7 +18,10 @@ export default class SearchSwimmers extends Vue {
 
     @Watch('search')
     async startSearch(){
-        this.searchResult = await searchRepository.getSearch(this.search.firstName, this.search.lastName);
+        await searchRepository.getSearch(this.search.firstName, this.search.lastName).then(response =>
+            {
+                this.searchResult = response
+            });
                     // this.searchResult = response.data);
     }
 }
