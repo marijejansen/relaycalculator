@@ -14,7 +14,14 @@ export default new Vuex.Store({
   mutations: {
     updateSearchResult(state, searchResult){
       state.searchResult = searchResult;
-    }
+    },
+    addToSelectedSwimmers(state, swimmer){
+      if(state.selectedSwimmers.find(s => s.id == swimmer.id) == null){
+        state.selectedSwimmers.push(swimmer);
+      }
+    },
+    removeFromSelectedSwimmers(state, swimmer){
+      state.selectedSwimmers = state.selectedSwimmers.filter(sw => sw.id !== swimmer.id);    }
   },
   getters: {
     getSearchResult: (state) => () => {

@@ -18,8 +18,7 @@
         </div>
       </div>
     </div>
-    <button class="" type="button" @click="startSearch()"/>
-    <a>{{search.firstName}} {{search.lastName}}</a>
+    <button class="button search" type="button" @click="startSearch()">Search</button>
   </div>
 </template>
 

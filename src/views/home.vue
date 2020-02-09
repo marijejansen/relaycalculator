@@ -1,7 +1,8 @@
 <template>
   <div class="home">
+      <search-swimmers></search-swimmers>
     <div class="row">
-      <search-swimmers class="col-md-6"></search-swimmers>
+      <search-results class="col-md-6"></search-results>
       <selected-swimmers class="col-md-6"></selected-swimmers>
     </div>
   </div>
