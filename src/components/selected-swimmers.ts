@@ -31,7 +31,6 @@ export default class SelectedSwimmers extends Vue {
     private updateTimeRequest: UpdateTimesRequest = {
         Course: Course.ShortCourse,
         SwimmerId: 0,
-        FromYear: 0
     }
 
 	get selectedSwimmers() {
@@ -41,15 +40,5 @@ export default class SelectedSwimmers extends Vue {
 
     removeSwimmer(swimmerId: number){
         store.commit('removeFromSelectedSwimmers', swimmerId);
-    }
-    async getTimes(swimmerId: number){
-        this.updateTimeRequest = {
-            SwimmerId: swimmerId,
-            Course: this.course,
-            FromYear: this.year
-        }
-        store.dispatch('updateSelectedWithTimes', this.updateTimeRequest);
-        this.updateTimeRequest.Course = Course.LongCourse
-        store.dispatch('updateSelectedWithTimes', this.updateTimeRequest);
     }
 }

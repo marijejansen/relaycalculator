@@ -12,7 +12,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     searchResult: Array<Swimmer>(),
-    selectedSwimmers: Array<Swimmer>()
+    selectedSwimmers: Array<Swimmer>(),
+    fromYear: 2020,
   },
   mutations: {
     updateSearchResult(state, searchResult){
@@ -33,22 +34,27 @@ export default new Vuex.Store({
     addLCTimes(state, payload){
       var index = state.selectedSwimmers.findIndex(sw => sw.id == payload.id);
       state.selectedSwimmers[index].longCourseTimes = payload.courseTimes;
+    },
+    updateYear(state, year){
+      state.fromYear = year;
     }
   },
   getters: {
     getSearchResult: state => () => {
       return state.searchResult;
     },
-    getSelectedById: state => (id: number) => state.selectedSwimmers.find(s => s.id == id)
+    getSelectedById: state => (id: number) => state.selectedSwimmers.find(s => s.id == id),
+    getYear: state => state.fromYear
   },
   actions: {
     updateSelectedWithTimes({ commit, getters }, payload){
+      var year = getters.getYear;
       if(payload.Course == Course.ShortCourse){
-              return searchRepository.getShortCourseTimes(payload.SwimmerId, payload.FromYear).then((response) => {
+              return searchRepository.getShortCourseTimes(payload.SwimmerId, year).then((response) => {
               commit('addSCTimes', {id: payload.SwimmerId, courseTimes: response});
               })
       } else {
-        return searchRepository.getLongCourseTimes(payload.SwimmerId, payload.FromYear).then((response) => {
+        return searchRepository.getLongCourseTimes(payload.SwimmerId, year).then((response) => {
           commit('addLCTimes', {id: payload.SwimmerId, courseTimes: response});
           })
       }

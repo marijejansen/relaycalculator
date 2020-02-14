@@ -2,25 +2,24 @@
 
 
 body{
-    background-color: $dark-purple;
+    background-color: $light-blue;
 }
 
 h2{
-    margin: 0.5rem 5rem;
+    margin: 3rem 0.5rem 3rem 5rem;
 }
 .button{
-    background-color: $purple;
+    background-color: $light-blue;
     border: 0.7px solid $dark-purple;
-    // border: none;
     border-radius: 4.0px;
-    color: $light-purple;
     height: 2.5rem;
     width: 4rem;
     margin: 0.2rem;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: $light-purple;
+    background-color: $select-blue;
     color:$purple;
   }
 
@@ -31,7 +30,7 @@ button:hover {
         width: 50%;
     }
     &.col-3{
-        width: 33%
+        width: 31%
     }
 }
 
@@ -48,11 +47,12 @@ button:hover {
 //search component
 .search{
 
-    background-color:$container-blue;
+    background-color:$white;
     border-radius: 0.2rem;
     border: 3px double $purple;
     width: 475px;
     margin: 20px auto;
+    padding-bottom: 0.5rem;
 
     @media only screen and (max-width: 768px) {
         width: 300px;
@@ -61,21 +61,25 @@ button:hover {
     .search-label {
         width: 33%;
         text-align: right;
+        margin-right: 1rem;
     }
     input{
-        height: 1.4rem;
+        height: 1.7rem;
         padding: 0 4px;
         opacity: 0.8;    
         border-radius: 0.2rem; 
         border: 0.8px solid $purple;
     }
+    .row {
+        margin-bottom: 0.5rem;
+    }
 }
 
 .results-container{
-    background-color: $bg-grey;
+    background-color: $white;
     border-radius: 2px;
     margin: 1.5rem;
-    min-height: 25rem;
+    min-height: 33rem;
 }
 
 .search-item{
@@ -85,13 +89,8 @@ button:hover {
     border-radius: 1px 7px;
     display: flex;  
     transition: 0.5s;
-    cursor: pointer;
-
     
-    &:hover:not(.selection){
-        background-color: rgba(255, 255, 255, 0.5);
-        margin: 0.6rem 4rem;
-    }
+    
     
     .col-result{
         white-space: nowrap;
@@ -109,12 +108,28 @@ button:hover {
             flex-basis: 10%;
         }
     }
-    button{
-        border: none;
-        background-color: inherit;
-        color: rgb(126, 15, 38);
+
+    &:not(:first-child){
+
         cursor: pointer;
-        transition: 0.3s;
+        
+        &:hover:not(.selection){
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0.6rem 4rem;
+        }
+        button{
+            border: none;
+            background-color: inherit;
+            color: rgb(126, 15, 38);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    }
+
+    &:first-child{
+        background-color: $select-blue;
+        font-style: italic;
+        border-radius: 7px;
     }
 }
 
@@ -126,5 +141,17 @@ button:hover {
     
     &:hover{
         background-color:rgba(126, 15, 38, 0.2);
+    }
+}
+
+.yearPicker{
+
+        margin: 7rem 0 0 2rem;
+        
+        select{
+        height: 30px;
+        width: 70px;
+        padding: 5px;
+        border-radius: 5px;
     }
 }

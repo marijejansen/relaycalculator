@@ -20,4 +20,17 @@ export default class SearchSwimmers extends Vue {
                 store.commit('updateSearchResult', response);
             });
     }
+
+
+    // yearpicker
+
+    //TODO: create array from current year
+    years : number[] = [2017, 2018, 2019, 2020];
+
+    get selectedYear() {
+        return store.state.fromYear 
+    } 
+    set selectedYear(year) {
+        store.commit('updateYear', year)
+    }
 }
