@@ -1,0 +1,130 @@
+@import "./colors.scss";
+
+
+body{
+    background-color: $dark-purple;
+}
+
+h2{
+    margin: 0.5rem 5rem;
+}
+.button{
+    background-color: $purple;
+    border: 0.7px solid $dark-purple;
+    // border: none;
+    border-radius: 4.0px;
+    color: $light-purple;
+    height: 2.5rem;
+    width: 4rem;
+    margin: 0.2rem;
+}
+
+button:hover {
+    background-color: $light-purple;
+    color:$purple;
+  }
+
+.column {
+    float: left;
+    text-align: start;
+    &.col-2{
+        width: 50%;
+    }
+    &.col-3{
+        width: 33%
+    }
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.container {   
+    padding: 1rem;    
+}
+
+//search component
+.search{
+
+    background-color:$container-blue;
+    border-radius: 0.2rem;
+    border: 3px double $purple;
+    width: 475px;
+    margin: 20px auto;
+
+    @media only screen and (max-width: 768px) {
+        width: 300px;
+    }
+
+    .search-label {
+        width: 33%;
+        text-align: right;
+    }
+    input{
+        height: 1.4rem;
+        padding: 0 4px;
+        opacity: 0.8;    
+        border-radius: 0.2rem; 
+        border: 0.8px solid $purple;
+    }
+}
+
+.results-container{
+    background-color: $bg-grey;
+    border-radius: 2px;
+    margin: 1.5rem;
+    min-height: 25rem;
+}
+
+.search-item{
+    margin: 0.5rem 5rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid $purple;
+    border-radius: 1px 7px;
+    display: flex;  
+    transition: 0.5s;
+    cursor: pointer;
+
+    
+    &:hover:not(.selection){
+        background-color: rgba(255, 255, 255, 0.5);
+        margin: 0.6rem 4rem;
+    }
+    
+    .col-result{
+        white-space: nowrap;
+        overflow: hidden;
+        flex-grow: 0;
+        margin: 0 2px;
+        &.name{
+            flex-basis: 40%;
+            font-weight: 500;
+        }
+        &.club{
+            flex-basis: 50%;
+        }
+        &.year{
+            flex-basis: 10%;
+        }
+    }
+    button{
+        border: none;
+        background-color: inherit;
+        color: rgb(126, 15, 38);
+        cursor: pointer;
+        transition: 0.3s;
+    }
+}
+
+.search-item.selection{
+    pointer-events: none;    
+    button{
+        pointer-events: auto;
+    }
+    
+    &:hover{
+        background-color:rgba(126, 15, 38, 0.2);
+    }
+}

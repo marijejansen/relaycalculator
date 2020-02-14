@@ -1,9 +1,9 @@
 <template>
   <div class="home">
       <search-swimmers></search-swimmers>
-    <div class="row">
-      <search-results class="col-md-6"></search-results>
-      <selected-swimmers class="col-md-6"></selected-swimmers>
+    <div class="row results-container">
+      <search-results class="column col-2"></search-results>
+      <selected-swimmers class="column col-2"></selected-swimmers>
     </div>
   </div>
 </template>

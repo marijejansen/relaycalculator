@@ -1,24 +1,25 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container search">
       <div class="row">
-        <div class="col-md-6">
+        <div class="column col-2 search-label">
           <label>First name:</label>
         </div>
-        <div class="col-md-6">
-          <input v-model="search.firstName" placeholder="Enter first name">
+        <div class="column col-2">
+          <input v-model="search.firstName">
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="column col-2 search-label">
           <label>Last name:</label>
         </div>
-        <div class="col-md-6">
-          <input v-model="search.lastName" placeholder="Enter last name">
+        <div class="column col-2">
+          <input v-model="search.lastName">
         </div>
       </div>
+      
+    <button class="button search-btn" type="button" @click="startSearch()">Search</button>
     </div>
-    <button class="button search" type="button" @click="startSearch()">Search</button>
   </div>
 </template>
 

@@ -14,6 +14,7 @@ export default class SearchSwimmers extends Vue {
     }
 
     async startSearch(){
+        //TODO: naar store?
         await searchRepository.getSearch(this.search.firstName, this.search.lastName).then(response =>
             {
                 store.commit('updateSearchResult', response);

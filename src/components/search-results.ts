@@ -1,5 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer"
+import { CourseTimes } from "@/models/coursetimes";
 import store from '@/store';
 
 @Component
@@ -14,8 +15,28 @@ export default class SearchResults extends Vue {
         birthYear: 0,
         clubName: "",
         gender: 0,
-        longCourseTimes: [],
-        shortCourseTimes: []
+        longCourseTimes: {
+            freestyle50M: 0,
+            freestyle100M: 0,
+            freestyle200M: 0,
+            backstroke50M: 0,
+            backstroke100M: 0,
+            breaststroke50M: 0,
+            breaststroke100M: 0,
+            butterfly50M: 0,
+            butterfly100M: 0
+        },
+        shortCourseTimes: {
+            freestyle50M: 0,
+            freestyle100M: 0,
+            freestyle200M: 0,
+            backstroke50M: 0,
+            backstroke100M: 0,
+            breaststroke50M: 0,
+            breaststroke100M: 0,
+            butterfly50M: 0,
+            butterfly100M: 0
+        }
 
     };
 
@@ -25,10 +46,7 @@ export default class SearchResults extends Vue {
     }
 
     selectSwimmer(id: number){
-        console.log(id);
-        console.log(this.searchResults);
         let swimmer = this.searchResults.find(s => s.id == id);
-        console.log(swimmer);
         if(swimmer != null){
             this.swimmer = swimmer;
         }

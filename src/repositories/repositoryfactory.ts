@@ -1,5 +1,4 @@
 import searchRepository from "./search-repository"
-import baseRepository from './base-repository';
 
 const repositories = {
     search: searchRepository

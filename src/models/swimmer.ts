@@ -1,4 +1,5 @@
 import { Gender } from './gender';
+import { CourseTimes } from './coursetimes';
 
 export interface Swimmer {
     id: number,
@@ -7,6 +8,6 @@ export interface Swimmer {
     birthYear: number,
     gender: Gender
     clubName: string,
-    shortCourseTimes: [],
-    longCourseTimes: []
+    shortCourseTimes: CourseTimes,
+    longCourseTimes: CourseTimes
 }

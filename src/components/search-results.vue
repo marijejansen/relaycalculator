@@ -1,11 +1,14 @@
 <template>
-<div>
-<b-list-group>
-  <b-list-group-item class="search-item" v-for="swimmer in searchResult" :key="swimmer.id" @click="selectSwimmer(swimmer.id)">
-    {{swimmer.firstName}} {{swimmer.lastName}} - {{swimmer.clubName}} : {{swimmer.birthYear}}  
-    </b-list-group-item>
-</b-list-group>
-</div>
+  <div>
+    <h2>Search results</h2>
+    <div>
+      <div class="search-item row results" v-for="swimmer in searchResult" :key="swimmer.id" @click="selectSwimmer(swimmer.id)">
+        <div class="column col-result name">{{swimmer.firstName}} {{swimmer.lastName}}</div>
+        <div class="column col-result club">{{swimmer.clubName}}</div>
+        <div class="column col-result year">{{swimmer.birthYear}}</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
