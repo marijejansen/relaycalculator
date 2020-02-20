@@ -33,4 +33,9 @@ export default class SearchSwimmers extends Vue {
     set selectedYear(year) {
         store.commit('updateYear', year)
     }
+
+    get buttonDisabled() {
+        return !(store.state.selectedSwimmers.length > 0);
+    }
+
 }

@@ -1,7 +1,6 @@
 <template>
   <div class="home">
       <search-swimmers></search-swimmers>
-      <router-link to="view-times"><button></button></router-link>
     <div class="row results-container">
       <search-results class="column col-2 search-results"></search-results>
       <selected-swimmers class="column col-2"></selected-swimmers>

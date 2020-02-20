@@ -1,9 +1,6 @@
 <template>
-  <div class="home">
-    <div class="row results-container">
-      <search-results class="column col-2 search-results"></search-results>
-      <selected-swimmers class="column col-2"></selected-swimmers>
-    </div>
+  <div class="view-times">
+   <times-overview></times-overview>
   </div>
 </template>
 
