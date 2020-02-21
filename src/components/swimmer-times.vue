@@ -5,7 +5,8 @@
         class=""
         v-for="(item, key) in courseTimes"
         :key="swimmer.id + key"
-        :distance-time="item"
+        :distance-with-time="{time: item, distance: key}"
+        @update-time="updateTime"
       ></distance-time>
   </div>
 </template>

@@ -1,4 +1,5 @@
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+import { DistanceWithTime } from '@/models/distance-with-time';
 
 
 @Component
@@ -6,23 +7,33 @@ export default class DistanceTime extends Vue {
    
     @Prop()
     distanceTime!: number;
+
+    @Prop()
+    distanceWithTime!: DistanceWithTime;     
     
-    private distTime: number = 0;
+    @Emit()
+    private updateTime(update: DistanceWithTime) {
+    }
 
     get time(){
-        var time = this.distanceTime;
+        var time = this.distanceWithTime.time;
         return time === 0 ? '' : time.toString();
     }
 
     set time(newTime: string){
         var numberTime = Number(newTime);
         if(numberTime !== NaN){
-            this.distanceTime = numberTime;
+            this.distanceWithTime.time = numberTime;
+            console.log(this.distanceWithTime.distance + "!" + this.distanceWithTime.time)
+            this.updateTime({
+                distance: this.distanceWithTime.distance,
+                time: this.distanceWithTime.time
+            });
         }
     }
 
-    private mounted(){
-        this.distTime = this.distanceTime;
-    }
+    // private mounted(){
+    //     this.distTime = this.distanceTime;
+    // }
 
 }
