@@ -9,8 +9,8 @@ const searchRepository = RepositoryFactory.get('search');
 export default class SearchSwimmers extends Vue {
     
     search: NameForSearch = {
-        firstName: "",
-        lastName: ""
+        firstName: "marije",
+        lastName: "jansen"
     }
 
     async startSearch(){
