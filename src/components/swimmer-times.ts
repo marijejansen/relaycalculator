@@ -14,36 +14,7 @@ export default class SwimmerTimes extends Vue {
     private course: Course = Course.ShortCourse;
 
     @Prop()
-    swimmerData: Swimmer = {
-        firstName: "",
-        lastName: "",
-        id: 0,
-        birthYear: 0,
-        gender: 0,
-        clubName: "",
-        shortCourseTimes: {
-            freestyle50M: 0,
-            freestyle100M: 0,
-            freestyle200M: 0,
-            backstroke50M: 0,
-            backstroke100M: 0,
-            breaststroke50M: 0,
-            breaststroke100M: 0,
-            butterfly50M: 0,
-            butterfly100M: 0,
-        },
-        longCourseTimes: {
-            freestyle50M: 0,
-            freestyle100M: 0,
-            freestyle200M: 0,
-            backstroke50M: 0,
-            backstroke100M: 0,
-            breaststroke50M: 0,
-            breaststroke100M: 0,
-            butterfly50M: 0,
-            butterfly100M: 0
-        }
-    };
+    swimmerData!: Swimmer;
 
     isShortCourse(){
         return this.course == Course.ShortCourse;

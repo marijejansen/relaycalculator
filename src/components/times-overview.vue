@@ -1,5 +1,5 @@
  <template>
-  <div v-if="dataLoaded" class="row results-container">
+  <div class="row results-container">
     <div class="search-item row results">
       <div class="column col-result times-name">Name</div>
       <div class="column col-result times" v-for="distance in distancesShort" v-bind:key="distance" >{{distance}}</div>

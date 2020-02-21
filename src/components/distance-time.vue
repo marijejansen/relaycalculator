@@ -1,6 +1,5 @@
 <template>
-    <!-- <input class="column col-result times" v-model="time"> -->
-    <div class="column col-result times">{{time}}</div>
+    <input class="column col-result times indiv" v-model="time"/>
 </template>
 
 

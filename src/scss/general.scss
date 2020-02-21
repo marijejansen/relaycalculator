@@ -112,6 +112,18 @@ button:hover:not(:disabled) {
             text-align: center;
             font-weight: bold;
         }
+
+        &.indiv{
+            border: none;
+            font-weight: normal;
+            font-size: 1.1rem;
+            &:focus{
+                background-color:$light-blue;
+                outline: none;
+            }
+            
+        }
+
         &.times-name{
             flex-basis: 20%;
         }

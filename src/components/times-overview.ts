@@ -2,9 +2,13 @@ import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from '@/models/swimmer';
 import store from '@/store';
 import { Course } from '@/models/course';
+import SwimmerTimes from '@/components/swimmer-times'
 
-@Component
-export default class ViewTimes extends Vue {
+@Component({
+    components: {
+        SwimmerTimes
+    }
+})export default class TimesOverview extends Vue {
 
     private distancesShort: string[] = ["50Free", "100Free", "200Free", "50Back", "100Back", "50Breast", "100Breast", "50Fly", "100Fly"];
 
