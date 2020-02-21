@@ -42,8 +42,8 @@ export default class DistanceTime extends Vue {
         var split = time.split(/[,:.;]/);
         var length = split.length;
 
-        var mil = Number(split[length-1]);
-        var sec = Number(split[length-2]);
+        var mil = length > 1 ? Number(split[length-1]) : 0;
+        var sec = length === 1 ? Number(split[0]) : Number(split[length-2]);
         var min = length > 2 ? Number(split[length-3]) : 0;
 
         return(min*60+sec+mil/100);       
@@ -51,12 +51,20 @@ export default class DistanceTime extends Vue {
 
     private toTimeString(time: number){
         var secNum = (time % 60);
-        var sec = this.paddStart(Number(secNum.toFixed(2)));
+        var sec = this.getSeconds(secNum);
         var min = this.paddStart((time - secNum) / 60);
         return `${min}:${sec}`;
     }
 
     private paddStart(num: number) : string{
         return (num < 10) ? ("0" + num) : num.toString();
+    }
+
+
+    private getSeconds(num: number) : string {
+        var number = Number(num.toFixed(2))
+        var numString = this.paddStart(number)
+        number % 1 === 0 ? numString += ".00" : (number % 0.1 === 0 ? numString += "0" : numString)
+        return numString;
     }
 }
