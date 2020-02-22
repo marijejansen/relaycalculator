@@ -39,13 +39,14 @@ export default class SwimmerTimes extends Vue {
     }
 
     updateSwimmer() {
-        var commitName = this.course == Course.ShortCourse ? "addSCTimes" : "addLCTimes";
-        store.commit(commitName, { id: this.swimmerData.id, courseTimes: this.swimmerData.shortCourseTimes });
+        var commitName = this.isShortCourse() ? "addSCTimes" : "addLCTimes";
+        var courseTimes = this.isShortCourse() ? this.swimmerData.shortCourseTimes : this.swimmerData.longCourseTimes;
+        store.commit(commitName, { id: this.swimmerData.id, courseTimes: courseTimes });
     }
 
     updateTime(update: DistanceWithTime) {
         this.isShortCourse() ? this.swimmerData.shortCourseTimes[update.distance] = update.time :
-            this.swimmerData.shortCourseTimes[update.distance] = update.time;
+            this.swimmerData.longCourseTimes[update.distance] = update.time;
         this.updateSwimmer();
     }
 }
