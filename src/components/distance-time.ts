@@ -30,7 +30,6 @@ export default class DistanceTime extends Vue {
         var numberTime = this.toSeconds(this.stringTime);
         if(numberTime !== NaN){
             this.distanceWithTime.time = numberTime;
-            console.log(this.distanceWithTime.distance + "!" + this.distanceWithTime.time)
             this.updateTime({
                 distance: this.distanceWithTime.distance,
                 time: this.distanceWithTime.time
@@ -42,9 +41,15 @@ export default class DistanceTime extends Vue {
         var split = time.split(/[,:.;]/);
         var length = split.length;
 
-        var mil = length > 1 ? Number(split[length-1]) : 0;
+        var mil = length <= 1 ? 0 : split[length-1].length == 1 ? Number(split[length-1] + "0") : Number(split[length-1]);
         var sec = length === 1 ? Number(split[0]) : Number(split[length-2]);
         var min = length > 2 ? Number(split[length-3]) : 0;
+
+        if(length == 2 && time.includes(':')){
+            mil = 0;
+            sec = Number(split[1]);
+            min = Number(split[0]);
+        }
 
         return(min*60+sec+mil/100);       
     }
@@ -52,8 +57,8 @@ export default class DistanceTime extends Vue {
     private toTimeString(time: number){
         var secNum = (time % 60);
         var sec = this.getSeconds(secNum);
-        var min = this.paddStart((time - secNum) / 60);
-        return `${min}:${sec}`;
+        var min = ((time - secNum) / 60).toString();
+        return min != '0' ? `${min}:${sec}` : `${sec}`;
     }
 
     private paddStart(num: number) : string{
@@ -63,8 +68,9 @@ export default class DistanceTime extends Vue {
 
     private getSeconds(num: number) : string {
         var number = Number(num.toFixed(2))
-        var numString = this.paddStart(number)
-        number % 1 === 0 ? numString += ".00" : (number % 0.1 === 0 ? numString += "0" : numString)
+        var numString = this.paddStart(number);
+
+        numString.length == 2 ? numString += ".00" : numString.length == 4 ? numString += "0" : null
         return numString;
     }
 }

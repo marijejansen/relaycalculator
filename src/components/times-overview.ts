@@ -14,24 +14,25 @@ import SwimmerTimes from '@/components/swimmer-times'
 
     private selectedSwimmersList: Swimmer[] = [];
 
-    private course: Course = Course.ShortCourse;
+    private course: Course = Course.LongCourse;
 
-    isShortCourse(){
+    get isShortCourse() {
         return this.course == Course.ShortCourse;
+    }
+
+    set isShortCourse(isShort: boolean) {
+        this.course = isShort ?  Course.ShortCourse : Course.LongCourse
     }
 
     get selectedSwimmers() {
         this.selectedSwimmersList = store.state.selectedSwimmers;
-        // this.selectedSwimmersList.forEach(swimmer => {
-        //     Object.keys(swimmer.shortCourseTimes).sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
-        // });
         return this.selectedSwimmersList;
     }
 
     courseTimes(swimmerId: number) {
         var swimmer = this.selectedSwimmers.find(swimmer => swimmer.id == swimmerId);
         if(swimmer != null){
-            return this.isShortCourse() ? swimmer.shortCourseTimes : swimmer.longCourseTimes;
+            return this.isShortCourse ? swimmer.shortCourseTimes : swimmer.longCourseTimes;
         }
     }
 }

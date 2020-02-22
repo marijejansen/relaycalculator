@@ -13,7 +13,8 @@ import { CourseTimes } from '@/models/coursetimes';
 })
 export default class SwimmerTimes extends Vue {
 
-    private course: Course = Course.ShortCourse;
+    @Prop()
+    private course!: Course;
 
     private distances: (keyof CourseTimes)[] = ['backstroke50M', "backstroke100M", "breaststroke50M", "breaststroke100M", 
         "butterfly50M", "butterfly100M", "freestyle50M", "freestyle100M", "freestyle200M"]
