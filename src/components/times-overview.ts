@@ -10,7 +10,7 @@ import SwimmerTimes from '@/components/swimmer-times'
     }
 })export default class TimesOverview extends Vue {
 
-    private distancesShort: string[] = ["50Free", "100Free", "200Free", "50Back", "100Back", "50Breast", "100Breast", "50Fly", "100Fly"];
+    private distancesShort: string[] = ["50Back", "100Back", "50Breast", "100Breast", "50Fly", "100Fly","50Free", "100Free", "200Free"];
 
     private selectedSwimmersList: Swimmer[] = [];
 
