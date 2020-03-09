@@ -1,5 +1,7 @@
 <template>
-    <input class="column col-result times indiv" v-model="time" @blur="setTime" />
+    <div>
+        <input v-model="time" @blur="setTime" />
+    </div>
 </template>
 
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="view-times">
-   <times-overview></times-overview>
+  <div>
+   <times-overview class="times-overview"></times-overview>
   </div>
 </template>
 

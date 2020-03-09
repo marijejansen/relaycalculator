@@ -1,12 +1,11 @@
 import { Component, Vue } from "vue-property-decorator";
-import SearchSwimmers from "@/components/search-swimmers.vue"
 import SearchResults from '@/components/search-results.vue';
-import SelectedSwimmers from '@/components/selected-swimmers';
+import Selection from '@/components/selection.vue';
 import SearchTop from '@/components/search-top';
 
 @Component({
   components: {
-    SearchSwimmers, SearchResults, SelectedSwimmers, SearchTop
+    SearchResults, Selection, SearchTop
   }
 })
 export default class Home extends Vue {}

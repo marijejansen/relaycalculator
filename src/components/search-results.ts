@@ -1,9 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer"
-import { CourseTimes } from "@/models/coursetimes";
 import store from '@/store';
-import { UpdateTimesRequest } from '@/models/update-times-request';
-import { Course } from '@/models/course';
 
 @Component
 export default class SearchResults extends Vue {
@@ -22,12 +19,6 @@ export default class SearchResults extends Vue {
     }
 
     async getTimes(swimmerId: number){
-        var updateTimeRequest: UpdateTimesRequest = {
-            SwimmerId: swimmerId,
-            Course: Course.ShortCourse,
-        }
-        store.dispatch('updateSelectedWithTimes', updateTimeRequest);
-        updateTimeRequest.Course = Course.LongCourse
-        store.dispatch('updateSelectedWithTimes', updateTimeRequest);
+        store.dispatch('updateSelectedWithTimes', swimmerId);
     }
 }

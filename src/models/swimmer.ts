@@ -9,5 +9,6 @@ export interface Swimmer {
     gender: Gender
     clubName: string,
     shortCourseTimes: CourseTimes,
-    longCourseTimes: CourseTimes
+    longCourseTimes: CourseTimes,
+    timesLoaded: boolean
 }

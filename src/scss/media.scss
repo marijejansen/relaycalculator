@@ -1,0 +1,34 @@
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .container {
+    margin: 0.8rem;
+    padding: 0.6rem;
+  }
+
+  .result-col {
+    padding: 0.2rem 0.6rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    .container {
+      margin: 0.6rem;
+      padding: 0.4rem;
+      flex-direction: column;
+    }
+
+    @media screen and (max-width: 600px) {
+      body {
+        font-size: 0.8rem;
+      }
+
+      @media screen and (max-width: 400px) {
+        .result-col {
+          padding: 0.2rem 0.2rem;
+        }
+      }
+    }
+  }
+}

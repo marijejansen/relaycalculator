@@ -9,11 +9,10 @@
         color: $disable-grey;
         &.active{
             color: initial;
+            font-weight: bold;
         }
     }
 }
-
-
 
 /* The switch - the box around the slider */
 .switch {
@@ -39,7 +38,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $select-blue;
+  background-color: $dark-blue;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -58,7 +57,7 @@
 }
 
 input:checked + .slider {
-  background-color: $select-blue;
+  background-color: $dark-blue;
 }
 
 input:checked + .slider:before {

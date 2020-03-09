@@ -1,0 +1,48 @@
+/* times-overview */
+.times-overview .results {
+    flex: 1;
+  }
+  
+  .times-overview span.row {
+    border-left: none;
+  }
+  
+  .times-overview span.row > div:not(:first-child) {
+    text-align: center;
+  }
+  
+  .times-overview span.row .name {
+    flex: 1.5;
+  }
+  
+  .times-overview span.row div {
+    width: 100%;
+    flex: 1 1 0;
+  }
+  
+  .times-overview span.row input {
+    width: 100%;
+    border: none;
+    padding: 0;
+    text-align: center;
+  }
+  /* - - -  */
+  
+  /* times-overview top */
+  
+  /* // same as search top, add?*/
+  .times-top{
+    /* justify-content: center; */
+    align-items: center;
+    display: flex;
+    height: 5.2rem;
+    background-color: white;
+  }
+  
+  .times-top > div {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* - - -  */

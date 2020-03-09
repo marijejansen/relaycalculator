@@ -1,0 +1,102 @@
+/* search-top */
+.search-top {
+  display: flex;
+  height: 5.2rem;
+  background-color: $white;
+
+  > div {
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  input {
+    height: 2rem;
+    margin-right: 0.5rem;
+    width: 12rem;
+  }
+}
+/* - - -  */
+
+/* results */
+.result-col {
+  flex: 1 1 0;
+  padding: 0.5rem 1.5rem;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+
+  > span {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    background-color: $white;
+    margin: 0.5rem 0;
+    padding: 0.2rem 0.4rem;
+    transition: 0.5s;
+    cursor: default;
+
+    &:not(:first-child) {
+      border-left: 6px solid $dark-yellow;
+
+      &.loaded{
+        border-left: 6px solid green;
+
+      }
+    }
+
+    > .name {
+      flex: 4;
+    }
+  
+    > .club {
+      flex: 4;
+    }
+  
+    > .year {
+      flex: 1;
+    }
+
+  }
+}
+
+.search-result span:not(:first-child) {
+  cursor: pointer;
+
+  &:hover {
+    margin: 0.5rem -1rem;
+    background-color: $light-yellow;
+  }
+}
+
+.row {
+  &:first-child {
+    font-weight: bold;
+    background-color: $dark-blue;
+    border-bottom: 2px solid $darker-blue;
+    border-top: 2px solid $darker-blue;
+
+    > div {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+.selected span {
+  pointer-events: none;
+
+  .remove {
+    pointer-events: auto;
+    cursor: pointer;
+    flex: 0 0 auto;
+    color: $dark-red;
+  }
+
+  &:hover {
+    background-color: $soft-red;
+  }
+}
