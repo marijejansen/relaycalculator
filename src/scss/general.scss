@@ -1,198 +1,35 @@
-@import "./colors.scss";
-
-
-body{
-    background-color: $light-blue;
+body {
+  /* background-image: url("pool.webp"); */
+  background-color: rgb(175, 175, 175);
+  margin: 0px;
+  margin-top: 5rem;
+  font-size: 1rem;
+  color: $darkest-blue;
 }
 
-h2{
-    margin: 1rem 0.5rem 2rem 2rem;
-}
-.button{
-    background-color: $light-blue;
-    border: 0.7px solid $dark-purple;
-    border-radius: 4.0px;
-    height: 2.5rem;
-    width: 4rem;
-    margin: 0.2rem;
-    cursor: pointer;
+h2 {
+  margin-block-start: 0.5rem;
 }
 
-button:hover:not(:disabled) {
-    background-color: $select-blue;
-    color:$purple;
-  }
-
-.column {
-    float: left;
-    text-align: start;
-    &.col-2{
-        width: 50%;
-    }
-    &.col-3{
-        width: 31%
-    }
+input,
+button,
+select {
+  font-family: inherit;
+  display: inline-block;
+  background: none;
+  border: 1px solid $grey;
+  font-size: 1rem;
+  outline: none;
+  padding: 5px;
+  text-decoration: none;
 }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-.container {   
-    padding: 1rem;    
+button {
+  cursor: pointer;
 }
 
-//search component
-.search{
-
-    background-color:$white;
-    border-radius: 0.2rem;
-    border: 3px double $purple;
-    width: 475px;
-    margin: 20px auto;
-    padding-bottom: 0.5rem;
-
-    @media only screen and (max-width: 768px) {
-        width: 300px;
-    }
-
-    .search-label {
-        width: 33%;
-        text-align: right;
-        margin-right: 1rem;
-    }
-    input{
-        height: 1.7rem;
-        padding: 0 4px;
-        opacity: 0.8;    
-        border-radius: 0.2rem; 
-        border: 0.8px solid $purple;
-    }
-    .row {
-        margin-bottom: 0.5rem;
-    }
-}
-
-.results-container{
-    background-color: $white;
-    border-radius: 2px;
-    margin: 1.5rem;
-    min-height: 33rem;
-    padding: 2rem;
-}
-
-.search-item,.distance-item{
-    margin: 0.5rem 2rem;
-    padding: 0.2rem 0.5rem;
-    border: 1px solid $purple;
-    border-radius: 1px 7px;
-    display: flex;  
-    transition: 0.5s;  
-
-    .col-result{
-        white-space: nowrap;
-        overflow: hidden;
-        flex-grow: 0;
-        margin: 0 2px;
-        &.name{
-            flex-basis: 40%;
-            font-weight: 500;
-        }
-        &.club{
-            flex-basis: 50%;
-        }
-        &.year{
-            flex-basis: 10%;
-        }
-
-        &.times{
-            flex-basis: 10%;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        &.indiv{
-            border: none;
-            font-weight: normal;
-            font-size: 1.1rem;
-            &:focus{
-                background-color:$light-blue;
-                outline: none;
-            }
-            
-        }
-
-        &.times-name{
-            flex-basis: 20%;
-        }
-    }
-            &.loaded{
-                background: lightgreen;
-            }
-
-    &:not(:first-child){
-
-        cursor: pointer;
-        
-        &.selection:hover{
-            background-color: rgba(255, 255, 255, 0.5);
-            margin: 0.6rem 1rem;
-        }
-        button{
-            border: none;
-            background-color: inherit;
-            color: rgb(126, 15, 38);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-    }
-
-    &:first-child{
-        background-color: $select-blue;
-        font-style: italic;
-        border-radius: 7px;
-    }
-
-    &.view{
-        cursor: auto;
-    }
-}
-
-.search-item.selection{
-    pointer-events: none;    
-    button{
-        pointer-events: auto;
-    }
-    
-    &:hover{
-        background-color:rgba(126, 15, 38, 0.2);
-    }
-}
-
-.yearPicker{
-
-        margin: 7rem 0 0 2rem;
-        
-        select{
-        height: 30px;
-        width: 70px;
-        padding: 5px;
-        border-radius: 5px;
-    }
-}
-
-.link-view-times {
-    margin: 6rem 0 0 14rem;
-
-    .button{
-        width: 8rem;
-        background-color: $white;
-
-        &:disabled{
-            background-color:$disable-grey;
-            cursor: not-allowed;
-        }
-    }
+.container {
+  display: flex;
+  margin: 0 1.5rem;
+  padding: 0 1rem;
 }
