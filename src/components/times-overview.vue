@@ -1,9 +1,10 @@
  <template>
   <div>
     <div class="times-top">
-      <div>
-        <button>&lt; &lt; Back to search</button>
-      </div>
+
+      <router-link to="/">
+        <button>&lt;&lt; Back to search</button>
+      </router-link>
 
       <div class="switch-container">
         <div v-bind:class="{active: !isShortCourse}">long course</div>
@@ -14,9 +15,9 @@
         <div v-bind:class="{active: isShortCourse}">short course</div>
       </div>
 
-      <div>
-        <button>>> Next</button>
-      </div>
+      <router-link to="/">
+        <button>Next >></button>
+      </router-link>
     </div>
 
     <div class="container">
