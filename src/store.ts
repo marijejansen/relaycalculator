@@ -15,7 +15,6 @@ export default new Vuex.Store({
   },
   mutations: {
     updateSearchResult(state, searchResult) {
-      searchResult.forEach((sw: Swimmer) => sw.timesLoaded = false)
       state.searchResult = searchResult;
     },
     addToSelectedSwimmers(state, swimmer) {
@@ -79,38 +78,37 @@ export default new Vuex.Store({
     updateWithTimes({ commit, getters }, swimmerId) {
       var year = getters.getYear;
 
-      // this.dispatch('getFromLocalStorage', swimmerId).then((response) => {
-      //   if(response != null){
-      //     this.commit('addToSelectedSwimmers', response);
-      //     this.dispatch('setLoaded', swimmerId);
-      //   } else {
-      searchRepository.getShortCourseTimes(swimmerId, year).then((response) => {
-        commit('addSCTimes', { id: swimmerId, courseTimes: response });
+      this.dispatch('getFromLocalStorage', swimmerId).then((response) => {
+        if (response != null && response != undefined) {
+          this.commit('addToSelectedSwimmers', response);
+          this.commit('setTimesLoaded', swimmerId);
+        } else {
+          searchRepository.getShortCourseTimes(swimmerId, year).then((response) => {
+            commit('addSCTimes', { id: swimmerId, courseTimes: response });
+          })
+            .then(() => searchRepository.getLongCourseTimes(swimmerId, year).then((response) => {
+              commit('addLCTimes', { id: swimmerId, courseTimes: response });
+            }))
+            .then(() => this.commit('setTimesLoaded', swimmerId))
+            .then(() => this.dispatch('addToLocalStorage', swimmerId))
+        }
       })
-        .then(() => searchRepository.getLongCourseTimes(swimmerId, year).then((response) => {
-          commit('addLCTimes', { id: swimmerId, courseTimes: response });
-        }))
-        .then(() => this.commit('setTimesLoaded', swimmerId))
-      // .then(() => this.dispatch('addToLocalStorage', swimmerId))
     },
-    //   })
-    // },
     addToLocalStorage({ }, swimmerId) {
       console.log("in add to local storage");
-      var swimmersStorage = sessionStorage.getItem('swimmers');
+      var swimmersStorage = sessionStorage.getItem(`swimmers`);
       var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
-      if (swimmers.find((sw: Swimmer) => sw.id == swimmerId) == null) {
-        swimmers.push(this.getters.getSelectedById(swimmerId))
+
+      if(swimmers.find((sw: Swimmer) => sw.id == swimmerId) == null) {
+        swimmers.push(this.getters.getSelectedById(swimmerId));
         sessionStorage.setItem('swimmers', JSON.stringify(swimmers))
-      }
-      else {
       }
     },
     getFromLocalStorage({ }, swimmerId) {
       var swimmersStorage = sessionStorage.getItem('swimmers');
       var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
-
-      return swimmers.find((sw: Swimmer) => sw.id = swimmerId);
+      var found = swimmers.find((sw: Swimmer) => sw.id == swimmerId);
+      return found;
     }
   },
 });
