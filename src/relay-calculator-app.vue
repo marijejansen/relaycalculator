@@ -2,6 +2,12 @@
   <div id="app">
     <header> </header>
     <router-view />
+  <div class="overlay">
+    <div class="load-container">
+    <div class="loader"></div>
+        <div class="loader"></div>
+</div>
+    </div>
   </div>
 </template>
 
