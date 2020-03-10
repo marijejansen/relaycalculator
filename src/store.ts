@@ -95,7 +95,6 @@ export default new Vuex.Store({
       })
     },
     addToLocalStorage({ }, swimmerId) {
-      console.log("in add to local storage");
       var swimmersStorage = sessionStorage.getItem(`swimmers`);
       var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
 

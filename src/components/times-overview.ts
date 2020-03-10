@@ -14,7 +14,7 @@ import SwimmerTimes from '@/components/swimmer-times'
 
     private selectedSwimmersList: Swimmer[] = [];
 
-    private course: Course = Course.LongCourse;
+    private course: Course = Course.ShortCourse;
 
     get isShortCourse() {
         return this.course == Course.ShortCourse;
