@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <header> </header>
+    <header></header>
     <router-view />
-  <div class="overlay">
-    <div class="load-container">
-    <div class="loader"></div>
+
+    <!-- //loader -->
+    <div class="overlay" v-bind:class="{'loading': isLoading}">
+      <div class="load-container">
         <div class="loader"></div>
-</div>
+        <div class="loader"></div>
+      </div>
     </div>
+    <!-- - -  -->
+    
   </div>
 </template>
 

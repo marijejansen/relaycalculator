@@ -12,6 +12,7 @@ export default new Vuex.Store({
     selectedSwimmers: Array<Swimmer>(),
     fromYear: 2020,
     loadedTimes: Array<Number>(),
+    loading: false
   },
   mutations: {
     updateSearchResult(state, searchResult) {
@@ -47,6 +48,12 @@ export default new Vuex.Store({
     },
     removeTimesLoaded(state, swimmerId) {
       state.loadedTimes.filter(t => t == swimmerId);
+    },
+    isLoading(state){
+      state.loading = true;
+    },
+    stopLoading(state){
+      state.loading = false;
     }
   },
 
@@ -71,6 +78,9 @@ export default new Vuex.Store({
         }
       });
       return allLoaded;
+    },
+    isLoading(state){
+      return state.loading;
     }
   },
 

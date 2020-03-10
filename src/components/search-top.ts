@@ -15,9 +15,11 @@ export default class SearchTop extends Vue {
 
   async startSearch() {
     //TODO: naar store?
+
+    store.commit('isLoading');
     await searchRepository.getSearch(this.search.firstName, this.search.lastName).then(response => {
       store.commit('updateSearchResult', response);
-    });
+    }).then(() => store.commit('stopLoading'));
   }
 
   getLastYears() {
