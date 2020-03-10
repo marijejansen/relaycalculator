@@ -37,12 +37,12 @@ export default class SearchTop extends Vue {
     store.commit('updateYear', year);
     if (store.state.selectedSwimmers.length > 0) {
       store.state.selectedSwimmers.forEach(swimmer => {
-        store.dispatch('updateSelectedWithTimes', swimmer.id);
+        store.dispatch('updateWithTimes', swimmer.id);
       });
     }
   }
   get buttonDisabled() {
-    return !(store.state.selectedSwimmers.length > 0);
+    return !store.getters.allTimesLoaded;
   }
 
 }

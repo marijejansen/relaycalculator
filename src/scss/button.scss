@@ -9,4 +9,11 @@ button {
       background-color: $yellow;
       border-color: initial;
     }
+
+    &:disabled {
+      background-color: $disabled-yellow;
+      opacity: 0.7;
+      border: initial;
+      cursor: default;
+    }
 }

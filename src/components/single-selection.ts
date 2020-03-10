@@ -5,9 +5,6 @@ import SwimmerTimes from './swimmer-times';
 
 @Component
 export default class SingleSelection extends Vue {
-
-    @Prop()
-    loaded!: boolean;
    
     @Prop()
     swimmerData!: Swimmer;
@@ -16,16 +13,12 @@ export default class SingleSelection extends Vue {
         return this.swimmerData;
     }
 
-    @Watch("swimmer.timesLoaded", {deep:true})
     get timesLoaded() {
-        return this.swimmer.timesLoaded;
+        return store.getters.timesLoaded(this.swimmer.id);
     }
 
-    // @Watch('timesLoaded') onChanged() {
-    //     console.log('TEST');
-    //   }
+    removeSwimmer() {
+        store.commit('removeFromSelectedSwimmers', this.swimmerData.id);
+    }
 
-    // removeSwimmer() {
-    //     store.commit('removeFromSelectedSwimmers', this.swimmerData.id);
-    // }
 }

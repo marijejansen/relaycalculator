@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import { Swimmer } from '@/models/swimmer'
-import { CourseTimes } from './models/coursetimes';
-import { Course } from './models/course';
 import searchRepository from './repositories/search-repository';
 
 
@@ -13,20 +11,24 @@ export default new Vuex.Store({
     searchResult: Array<Swimmer>(),
     selectedSwimmers: Array<Swimmer>(),
     fromYear: 2020,
+    loadedTimes: Array<Number>(),
   },
   mutations: {
     updateSearchResult(state, searchResult) {
+      searchResult.forEach((sw: Swimmer) => sw.timesLoaded = false)
       state.searchResult = searchResult;
     },
     addToSelectedSwimmers(state, swimmer) {
-      if (state.selectedSwimmers.find(s => s.id == swimmer.id) == null) {
-        //kan dit anders?
-        swimmer = { ...swimmer, timesLoaded: false }
+      var index = state.selectedSwimmers.findIndex(sw => sw.id == swimmer.id);
+      if (index != -1) {
+        state.selectedSwimmers[index] = swimmer;
+      } else {
         state.selectedSwimmers.push(swimmer);
       }
     },
     removeFromSelectedSwimmers(state, swimmerId) {
       state.selectedSwimmers = state.selectedSwimmers.filter(sw => sw.id !== swimmerId);
+      state.loadedTimes = state.loadedTimes.filter(t => t == swimmerId);
     },
     addSCTimes(state, payload) {
       var index = state.selectedSwimmers.findIndex(sw => sw.id == payload.id);
@@ -40,12 +42,12 @@ export default new Vuex.Store({
       state.fromYear = year;
     },
     setTimesLoaded(state, swimmerId) {
-      var index = state.selectedSwimmers.findIndex(sw => sw.id == swimmerId);
-      state.selectedSwimmers[index].timesLoaded = true;
+      if (state.loadedTimes.find(t => t == swimmerId) == null) {
+        state.loadedTimes.push(swimmerId);
+      }
     },
     removeTimesLoaded(state, swimmerId) {
-      var index = state.selectedSwimmers.findIndex(sw => sw.id == swimmerId);
-      state.selectedSwimmers[index].timesLoaded = false;
+      state.loadedTimes.filter(t => t == swimmerId);
     }
   },
 
@@ -53,32 +55,62 @@ export default new Vuex.Store({
     getSearchResult: state => () => {
       return state.searchResult;
     },
+
     getSelectedById: state => (id: number) => state.selectedSwimmers.find(s => s.id == id),
+
     getYear: state => state.fromYear,
+
     timesLoaded: (state, getters) => (swimmerId: number) => {
-      var swimmer = getters.getSelectedById(swimmerId);
-      return swimmer.timesLoaded;
+      return state.loadedTimes.find(t => t == swimmerId) != null;
+    },
+
+    allTimesLoaded(state) {
+      var allLoaded = state.selectedSwimmers.length > 0;
+      state.selectedSwimmers.forEach(swimmer => {
+        if (state.loadedTimes.find(t => t == swimmer.id) == null) {
+          allLoaded = false;
+        }
+      });
+      return allLoaded;
     }
   },
 
   actions: {
-    updateSelectedWithTimes({ commit, getters }, swimmerId) {
+    updateWithTimes({ commit, getters }, swimmerId) {
       var year = getters.getYear;
+
+      // this.dispatch('getFromLocalStorage', swimmerId).then((response) => {
+      //   if(response != null){
+      //     this.commit('addToSelectedSwimmers', response);
+      //     this.dispatch('setLoaded', swimmerId);
+      //   } else {
       searchRepository.getShortCourseTimes(swimmerId, year).then((response) => {
         commit('addSCTimes', { id: swimmerId, courseTimes: response });
       })
-      .then(() => searchRepository.getLongCourseTimes(swimmerId, year).then((response) => {
+        .then(() => searchRepository.getLongCourseTimes(swimmerId, year).then((response) => {
           commit('addLCTimes', { id: swimmerId, courseTimes: response });
-      }))
-      .then(() => this.dispatch('setLoaded', swimmerId))
+        }))
+        .then(() => this.commit('setTimesLoaded', swimmerId))
+      // .then(() => this.dispatch('addToLocalStorage', swimmerId))
+    },
+    //   })
+    // },
+    addToLocalStorage({ }, swimmerId) {
+      console.log("in add to local storage");
+      var swimmersStorage = sessionStorage.getItem('swimmers');
+      var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
+      if (swimmers.find((sw: Swimmer) => sw.id == swimmerId) == null) {
+        swimmers.push(this.getters.getSelectedById(swimmerId))
+        sessionStorage.setItem('swimmers', JSON.stringify(swimmers))
+      }
+      else {
+      }
+    },
+    getFromLocalStorage({ }, swimmerId) {
+      var swimmersStorage = sessionStorage.getItem('swimmers');
+      var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
 
-    },
-    //TODO: onnodig?
-    setLoaded({ commit, getters }, swimmerId) {
-      commit('setTimesLoaded', swimmerId);
-    },
-    removeLoaded({ commit, getters }, swimmerId) {
-      commit('removeTimesLoaded', swimmerId);
-    },
+      return swimmers.find((sw: Swimmer) => sw.id = swimmerId);
+    }
   },
 });

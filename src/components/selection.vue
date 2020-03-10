@@ -10,12 +10,6 @@
       </span>
 
       <single-selection v-for="swimmer in selectedSwimmers" :key="swimmer.id" :swimmer-data="swimmer"></single-selection>
-      <!-- <span class="row" v-bind:class="{loaded: timesLoaded(swimmer.id)}" v-for="swimmer in selectedSwimmers" :key="swimmer.id">
-        <div class="name">{{swimmer.firstName}} {{swimmer.lastName}}</div>
-        <div class="club">{{swimmer.clubName}}</div>
-        <div class="year">{{swimmer.birthYear}}</div>
-        <div class="remove" @click="removeSwimmer(swimmer.id)">X</div>
-      </span> -->
     </div>
   </div>
 </template>

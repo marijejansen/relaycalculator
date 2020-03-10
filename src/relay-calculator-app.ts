@@ -5,9 +5,9 @@ import store from '@/store';
 @Component
 export default class RelayCalculatorApp extends Vue {
 
-    created() {
-        store.subscribe((mutation, state) => {
-                localStorage.setItem('store-relay', JSON.stringify(state))
-        });
-    }
+    // created() {
+    //     store.subscribe((mutation, state) => {
+    //             localStorage.setItem('store-relay', JSON.stringify(state))
+    //     });
+    // }
 }

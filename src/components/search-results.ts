@@ -19,6 +19,6 @@ export default class SearchResults extends Vue {
     }
 
     async getTimes(swimmerId: number){
-        store.dispatch('updateSelectedWithTimes', swimmerId);
+        store.dispatch('updateWithTimes', swimmerId);
     }
 }
