@@ -1,4 +1,4 @@
-import DistanceTime from '../components/distance-time.vue';
+import DistanceTime from '../times/distance-time';
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Swimmer } from '@/models/swimmer';
 import { Course } from '@/models/course';

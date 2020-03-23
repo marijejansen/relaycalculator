@@ -82,6 +82,10 @@
     border-bottom: 2px solid $darker-blue;
     border-top: 2px solid $darker-blue;
 
+    > .name {
+      margin-left: 6px;
+    }
+
     > div {
       white-space: nowrap;
       overflow: hidden;

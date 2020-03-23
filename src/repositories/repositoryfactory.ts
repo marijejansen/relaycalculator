@@ -1,8 +1,9 @@
 import searchRepository from "./search-repository"
+import calculateRepository from './calculate-repository';
 
 const repositories = {
-    search: searchRepository
-    // other repositories
+    search: searchRepository,
+    calculate: calculateRepository
 };
 
 export const RepositoryFactory = {

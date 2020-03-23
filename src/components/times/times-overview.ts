@@ -2,7 +2,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from '@/models/swimmer';
 import store from '@/store';
 import { Course } from '@/models/course';
-import SwimmerTimes from '@/components/swimmer-times'
+import SwimmerTimes from '@/components/times/swimmer-times'
 
 @Component({
     components: {

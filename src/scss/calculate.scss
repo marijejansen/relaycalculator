@@ -1,0 +1,98 @@
+/* calculate */
+.calc-top {
+  display: flex;
+  align-items: center;
+  height: 5.2rem;
+  background-color: white;
+
+  > div {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .relay-type {
+    display: flex;
+  }
+}
+
+.calc-overview {
+
+  .result-col {
+
+    &:first-child {
+      flex: 1;
+      padding: 0.5rem 0 0.5rem 0;
+    }
+
+    &:nth-child(2) {
+      flex: 3;
+    }
+
+    .results {
+
+      span {
+        &.disabled {
+          background-color: lighten($color: #c5c5c5, $amount: 1);
+          color: grey;
+          border-left: 6px solid #c5c5c5;
+        }
+      }
+
+      label {
+        display: flex;
+        flex: 1;      
+        cursor: pointer;
+      }
+
+      input[type='checkbox'] {
+        display: none;
+      }
+
+      .name {
+        flex: 5 1 0;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .gender {
+        flex: 1.5 1 0;
+        text-align: center;
+      }
+
+      .age {
+        flex: 1 1 0;
+        text-align: center;
+      }
+
+      .rel-names {
+        flex: 8 1 0;
+        text-align: center;
+      }
+      
+      .time {
+        flex: 1 1 0;
+        text-align: center;
+      }
+
+      &.calc {
+        margin-left: 2rem;
+
+        span {
+          border-left: none;
+        }
+      }
+    }
+  }
+}
+
+.calculate-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  button {
+    height: 4rem;
+    width: 8rem;
+  }
+}

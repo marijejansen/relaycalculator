@@ -2,6 +2,11 @@ import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import { Swimmer } from '@/models/swimmer'
 import searchRepository from './repositories/search-repository';
+import { RelayTeam } from './models/relay-team';
+import { CalculationRequest } from './models/calculation-request';
+import { Stroke } from './models/stroke';
+import { Course } from './models/course';
+import calculateRepository from './repositories/calculate-repository';
 
 
 Vue.use(Vuex);
@@ -12,7 +17,9 @@ export default new Vuex.Store({
     selectedSwimmers: Array<Swimmer>(),
     fromYear: 2020,
     loadedTimes: Array<Number>(),
-    loading: false
+    loading: false,
+    calculationSelection: Array<Number>(),
+    calculatedTeams: Array<RelayTeam>()
   },
   mutations: {
     updateSearchResult(state, searchResult) {
@@ -54,6 +61,29 @@ export default new Vuex.Store({
     },
     stopLoading(state){
       state.loading = false;
+    },
+    addToSelectedForCalculation(state, swimmerId){
+      if (state.calculationSelection.find(s => s == swimmerId) == null) {
+        state.calculationSelection.push(swimmerId);
+      }
+    },
+    removeFromSelectedForCalculation(state, swimmerId){
+      state.calculationSelection = state.calculationSelection.filter(s => s !== swimmerId)
+    },
+    getCalculation(state){
+      //TODO: relaytype and course
+      var swimmers = state.selectedSwimmers.filter(s => state.calculationSelection.includes(s.id));
+      var calculationRequest: CalculationRequest = {
+        Swimmers: swimmers,
+        RelayType: {
+            Distance: 400,
+            Stroke: Stroke.Freestyle,
+            NumberOfSwimmers: 4
+        },
+        Course: Course.ShortCourse
+      }
+      calculateRepository.getBestTeams(calculationRequest).then(response => 
+        state.calculatedTeams = response)
     }
   },
 

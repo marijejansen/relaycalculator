@@ -44,7 +44,8 @@ export default class SearchTop extends Vue {
     }
   }
   get buttonDisabled() {
-    return !store.getters.allTimesLoaded;
+    return false;
+    // return !store.getters.allTimesLoaded;
   }
 
 }

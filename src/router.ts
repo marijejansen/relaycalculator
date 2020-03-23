@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/home.vue";
 import ViewTimes from "./views/view-times.vue";
+import Calculate from './views/calculate';
 
 Vue.use(Router);
 
@@ -17,6 +18,14 @@ export default new Router({
       path: '/view-times',
       name: 'viewtimes',
       component: ViewTimes,
+      meta: {
+        requireAuth: true,
+      },
+    },
+    {
+      path: '/calculate',
+      name: 'calculate',
+      component: Calculate,
       meta: {
         requireAuth: true,
       },

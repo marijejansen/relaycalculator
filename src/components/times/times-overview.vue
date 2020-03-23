@@ -15,7 +15,7 @@
         <div v-bind:class="{active: isShortCourse}">short course</div>
       </div>
 
-      <router-link to="/">
+      <router-link to="calculate">
         <button>Next >></button>
       </router-link>
     </div>
