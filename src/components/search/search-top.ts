@@ -48,4 +48,8 @@ export default class SearchTop extends Vue {
     // return !store.getters.allTimesLoaded;
   }
 
+  async loadSwimmers(){
+    store.dispatch('getAllFromLocalStorage');
+  }
+
 }

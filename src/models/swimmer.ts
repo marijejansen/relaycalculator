@@ -10,4 +10,5 @@ export interface Swimmer {
     clubName: string,
     shortCourseTimes: CourseTimes,
     longCourseTimes: CourseTimes,
+    time: number
 }

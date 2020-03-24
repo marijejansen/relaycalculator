@@ -70,20 +70,17 @@ export default new Vuex.Store({
     removeFromSelectedForCalculation(state, swimmerId){
       state.calculationSelection = state.calculationSelection.filter(s => s !== swimmerId)
     },
-    getCalculation(state){
-      //TODO: relaytype and course
+    getCalculation(state, relayType){
+      //TODO: course
+      state.loading = true;
       var swimmers = state.selectedSwimmers.filter(s => state.calculationSelection.includes(s.id));
       var calculationRequest: CalculationRequest = {
-        Swimmers: swimmers,
-        RelayType: {
-            Distance: 400,
-            Stroke: Stroke.Freestyle,
-            NumberOfSwimmers: 4
-        },
-        Course: Course.ShortCourse
+        swimmers: swimmers,
+        relayType: relayType,
+        course: Course.ShortCourse
       }
       calculateRepository.getBestTeams(calculationRequest).then(response => 
-        state.calculatedTeams = response)
+        state.calculatedTeams = response).then(() => state.loading = false)
     }
   },
 
@@ -135,19 +132,27 @@ export default new Vuex.Store({
       })
     },
     addToLocalStorage({ }, swimmerId) {
-      var swimmersStorage = sessionStorage.getItem(`swimmers`);
+      //TODO: naar sessionStorage!
+      var swimmersStorage = localStorage.getItem(`swimmers`);
       var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
 
       if(swimmers.find((sw: Swimmer) => sw.id == swimmerId) == null) {
         swimmers.push(this.getters.getSelectedById(swimmerId));
-        sessionStorage.setItem('swimmers', JSON.stringify(swimmers))
+        localStorage.setItem('swimmers', JSON.stringify(swimmers))
       }
     },
     getFromLocalStorage({ }, swimmerId) {
-      var swimmersStorage = sessionStorage.getItem('swimmers');
+      //TODO: naar sessionStorage!
+      var swimmersStorage = localStorage.getItem('swimmers');
       var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
       var found = swimmers.find((sw: Swimmer) => sw.id == swimmerId);
       return found;
-    }
+    },
+    getAllFromLocalStorage(){
+      //TODO: naar sessionStorage!
+      var swimmersStorage = localStorage.getItem('swimmers');
+      var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
+      swimmers.forEach((swimmer: Swimmer) => { this.commit('addToSelectedSwimmers', swimmer)});
+    },
   },
 });

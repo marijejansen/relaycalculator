@@ -4,6 +4,8 @@ import SingleSelectionCalc from '@/components/calculate/single-selection-calc'
 import CalcResult from '@/components/calculate/calc-result'
 import store from '@/store';
 import { RelayTeam } from '@/models/relay-team';
+import { RelayType } from '@/models/relay-type';
+import { Stroke } from '@/models/stroke';
 
 
 
@@ -19,7 +21,12 @@ export default class CalcOverview extends Vue {
     }
 
     async calculate() {
-        store.commit('getCalculation');
+        var relayType: RelayType = {
+            distance: 400,
+            stroke: Stroke.freestyle,
+            numberOfSwimmers: 4
+        };
+        store.commit('getCalculation', relayType);
     }
 
     get relays() {

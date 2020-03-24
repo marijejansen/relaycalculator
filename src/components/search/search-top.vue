@@ -14,6 +14,9 @@
     </div>
 
     <div>
+      <button type="button" @click="loadSwimmers()">+ load swimmers</button>
+    </div>
+    <div>
       <router-link to="view-times">
         <button v-bind:disabled="buttonDisabled" type="button">>> View times</button>
       </router-link>

@@ -1,14 +1,15 @@
 import { Component, Vue, Prop, Mixins} from "vue-property-decorator";
 import NameFormatMixin from "@/mixins/name-format-mixin"
 import TimeFormatMixin from "@/mixins/time-format-mixin"
+import SingleResultName from "@/components/calculate/single-result-name"
 
 import { RelayTeam } from '@/models/relay-team';
 import store from '@/store';
 import GenderFormatMixin from '@/mixins/gender-format-mixin';
 
 
-@Component
-export default class CalcResult extends Mixins(NameFormatMixin, TimeFormatMixin, GenderFormatMixin) {
+@Component({components: {SingleResultName}})
+export default class CalcResult extends Mixins(TimeFormatMixin, GenderFormatMixin) {
 
     @Prop()
     private relayTeam!: RelayTeam;
@@ -18,16 +19,8 @@ export default class CalcResult extends Mixins(NameFormatMixin, TimeFormatMixin,
         return this.relayTeam;
     }
 
-    get names(){
-        var names = "";
-        this.relayTeam.swimmers.forEach(swimmer => {
-            if(names != ""){
-                names += " - ";
-            }
-            var formattedName = this.nameShort(swimmer.firstName, swimmer.lastName);
-            names += formattedName;        
-        });
-        return names;
+    get swimmers() {
+        return this.relayTeam.swimmers;
     }
 
     get time(){
