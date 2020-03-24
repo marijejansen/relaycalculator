@@ -21,7 +21,7 @@
         <span class="row">
           <div class="age">Age</div>
           <div class="gender">Gender</div>
-          <div class="rel-names">Names</div>
+          <div class="names">Names</div>
           <div class="time">Time</div>
         </span>
 

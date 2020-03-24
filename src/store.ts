@@ -7,6 +7,7 @@ import { CalculationRequest } from './models/calculation-request';
 import { Stroke } from './models/stroke';
 import { Course } from './models/course';
 import calculateRepository from './repositories/calculate-repository';
+import { Relays } from './models/relays';
 
 
 Vue.use(Vuex);
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     loadedTimes: Array<Number>(),
     loading: false,
     calculationSelection: Array<Number>(),
-    calculatedTeams: Array<RelayTeam>()
+    calculatedTeams: Array<RelayTeam>(),
+    relay: Relays
   },
   mutations: {
     updateSearchResult(state, searchResult) {
@@ -81,6 +83,9 @@ export default new Vuex.Store({
       }
       calculateRepository.getBestTeams(calculationRequest).then(response => 
         state.calculatedTeams = response).then(() => state.loading = false)
+    },
+    setRelay(state, relay){
+      state.relay = relay;
     }
   },
 
