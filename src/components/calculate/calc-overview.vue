@@ -25,7 +25,7 @@
           <div class="time">Time</div>
         </span>
 
-        <calc-result v-for="team in relays" :key="team" :relay-team="team"></calc-result>
+        <calc-result v-for="team in relays" :key="team.id" :relay-team="team"></calc-result>
 
       </div>
     </div>

@@ -34,4 +34,8 @@ export default class SingleSelectionCalc extends Mixins(GenderFormatMixin, NameF
             store.commit('removeFromSelectedForCalculation', this.swimmer.id)
         }
     }
+
+    get select(){
+        return this.selected;
+    }
 }

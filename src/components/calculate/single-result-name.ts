@@ -22,7 +22,6 @@ export default class SingleResultName extends Mixins(NameFormatMixin, TimeFormat
     }
 
     get time() {
-        console.log(this.swimmer.time);
         return this.toTimeString(this.swimmer.time);
     }
 
