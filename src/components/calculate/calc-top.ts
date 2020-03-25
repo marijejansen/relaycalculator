@@ -1,25 +1,24 @@
 import { Component, Vue } from "vue-property-decorator";
-import { Relays } from '@/models/relays';
+import { Relay } from '@/models/relay';
 import store from '@/store';
 
 
 @Component
 export default class CalcTop extends Vue {
 
-    private relayPick: Relays = Relays.Free200;
+    private relayPick: Relay = Relay.Free200;
 
     get relays() {
-        const values = Object.values(Relays)
+        const values = Object.values(Relay)
         return values;
     }
 
-    set relay(relay: Relays){
+    set relay(relay: Relay){
         this.relayPick = relay;
         store.commit('setRelay', relay);
     }
 
     get relay(){
         return this.relayPick;
-
     }
 }

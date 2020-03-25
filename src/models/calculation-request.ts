@@ -1,9 +1,9 @@
 import { Swimmer } from './swimmer';
 import { Course } from './course';
-import { RelayType } from './relay-type';
+import { Relay } from './relay';
 
 export interface CalculationRequest {
     swimmers: Swimmer[],
-    relayType: RelayType,
+    relay: Relay,
     course: Course,
 }

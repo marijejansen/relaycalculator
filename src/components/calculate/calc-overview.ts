@@ -26,7 +26,7 @@ export default class CalcOverview extends Vue {
             stroke: Stroke.freestyle,
             numberOfSwimmers: 4
         };
-        store.commit('getCalculation', relayType);
+        store.commit('getCalculation');
     }
 
     get relays() {

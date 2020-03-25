@@ -7,7 +7,7 @@ import { CalculationRequest } from './models/calculation-request';
 import { Stroke } from './models/stroke';
 import { Course } from './models/course';
 import calculateRepository from './repositories/calculate-repository';
-import { Relays } from './models/relays';
+import { Relay } from './models/relay';
 
 
 Vue.use(Vuex);
@@ -21,7 +21,8 @@ export default new Vuex.Store({
     loading: false,
     calculationSelection: Array<Number>(),
     calculatedTeams: Array<RelayTeam>(),
-    relay: Relays
+    relay: Relay.Free200,
+    course: Course.ShortCourse
   },
   mutations: {
     updateSearchResult(state, searchResult) {
@@ -72,14 +73,13 @@ export default new Vuex.Store({
     removeFromSelectedForCalculation(state, swimmerId){
       state.calculationSelection = state.calculationSelection.filter(s => s !== swimmerId)
     },
-    getCalculation(state, relayType){
-      //TODO: course
+    getCalculation(state){
       state.loading = true;
       var swimmers = state.selectedSwimmers.filter(s => state.calculationSelection.includes(s.id));
       var calculationRequest: CalculationRequest = {
         swimmers: swimmers,
-        relayType: relayType,
-        course: Course.ShortCourse
+        relay: state.relay,
+        course: state.course
       }
       calculateRepository.getBestTeams(calculationRequest).then(response => 
         state.calculatedTeams = response).then(() => state.loading = false)

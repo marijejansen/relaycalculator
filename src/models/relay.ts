@@ -1,4 +1,4 @@
-export enum Relays{
+export enum Relay{
     Free200 = "4 x 50 freestyle",
     Free400 = "4 x 100 freestyle",
     Free800 = "4 x 200 freestyle",
