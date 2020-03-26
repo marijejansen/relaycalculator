@@ -57,7 +57,7 @@ export default new Vuex.Store({
       }
     },
     removeTimesLoaded(state, swimmerId) {
-      state.loadedTimes.filter(t => t == swimmerId);
+      state.loadedTimes = state.loadedTimes.filter(t => t !== swimmerId);
     },
     isLoading(state){
       state.loading = true;
@@ -119,12 +119,6 @@ export default new Vuex.Store({
   actions: {
     updateWithTimes({ commit, getters }, swimmerId) {
       var year = getters.getYear;
-
-      this.dispatch('getFromLocalStorage', swimmerId).then((response) => {
-        if (response != null && response != undefined) {
-          this.commit('addToSelectedSwimmers', response);
-          this.commit('setTimesLoaded', swimmerId);
-        } else {
           searchRepository.getShortCourseTimes(swimmerId, year).then((response) => {
             commit('addSCTimes', { id: swimmerId, courseTimes: response });
           })
@@ -133,8 +127,6 @@ export default new Vuex.Store({
             }))
             .then(() => this.commit('setTimesLoaded', swimmerId))
             .then(() => this.dispatch('addToLocalStorage', swimmerId))
-        }
-      })
     },
     addToLocalStorage({ }, swimmerId) {
       //TODO: naar sessionStorage!

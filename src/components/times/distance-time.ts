@@ -23,7 +23,9 @@ export default class DistanceTime extends Vue {
     }
 
     set time(newTime: string){
-        this.stringTime = newTime;
+        if(newTime != ""){
+            this.stringTime = newTime;
+        }
     }
 
     setTime(){
