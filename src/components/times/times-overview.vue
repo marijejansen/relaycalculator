@@ -1,6 +1,6 @@
  <template>
   <div>
-    <div class="times-top">
+    <div class="page-top">
 
       <router-link to="/">
         <button>&lt;&lt; Back to search</button>

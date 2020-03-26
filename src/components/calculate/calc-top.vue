@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-top">
     <div>
       <router-link to="/view-times">
         <button>&lt;&lt; Back to times</button>
@@ -16,7 +16,7 @@
       </div>
 
     <div class="relay-type">
-      <div>Relay type: </div>
+      <label>Relay type: </label>
       <select v-model="relay" :value="relayLabel(relay)">
         <option v-for="thisRelay in relays" :key="thisRelay" :value="thisRelay">{{relayLabel(thisRelay)}}</option>
       </select>

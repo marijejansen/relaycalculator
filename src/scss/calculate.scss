@@ -1,20 +1,4 @@
-/* calculate */
-.calc-top {
-  display: flex;
-  align-items: center;
-  height: 5.2rem;
-  background-color: white;
 
-  > div {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-
-  .relay-type {
-    display: flex;
-  }
-}
 
 .calc-overview {
 
@@ -110,7 +94,7 @@
     > div:first-child{
       flex: 1;      
     }
-    >div:nth-child(2){
+    > div:nth-child(2){
       flex: 4;
     }
 
