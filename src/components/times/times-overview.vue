@@ -1,18 +1,17 @@
- <template>
+<template>
   <div>
     <div class="page-top">
-
       <router-link to="/">
         <button>&lt;&lt; Back to search</button>
       </router-link>
 
       <div class="switch-container">
-        <div v-bind:class="{active: !isShortCourse}">long course</div>
+        <div v-bind:class="{ active: !isShortCourse }">long course</div>
         <label class="switch">
           <input type="checkbox" v-model="isShortCourse" />
           <span class="slider"></span>
         </label>
-        <div v-bind:class="{active: isShortCourse}">short course</div>
+        <div v-bind:class="{ active: isShortCourse }">short course</div>
       </div>
 
       <router-link to="calculate">
@@ -22,13 +21,12 @@
 
     <div class="container">
       <div class="results">
-
         <span class="row">
           <div class="name">Name</div>
-          <div v-for="distance in distancesShort"
-            v-bind:key="distance">{{distance}}
+          <div v-for="distance in distancesShort" v-bind:key="distance">
+            {{ distance }}
           </div>
-        </span> 
+        </span>
 
         <swimmer-times
           v-for="swimmer in selectedSwimmers"
@@ -36,11 +34,9 @@
           :swimmer-data="swimmer"
           :course="course"
         ></swimmer-times>
-
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" src="./times-overview.ts">
-</script>
+<script lang="ts" src="./times-overview.ts"></script>

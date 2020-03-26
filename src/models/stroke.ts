@@ -1,8 +1,7 @@
-export enum Stroke
-{
-    freestyle,
-    backstroke,
-    breaststroke,
-    butterfly,
-    medley
+export enum Stroke {
+  freestyle,
+  backstroke,
+  breaststroke,
+  butterfly,
+  medley
 }

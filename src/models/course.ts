@@ -1,4 +1,4 @@
-export enum Course{
-    LongCourse,
-    ShortCourse
+export enum Course {
+  LongCourse,
+  ShortCourse
 }

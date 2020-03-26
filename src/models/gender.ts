@@ -1,6 +1,6 @@
 export enum Gender {
-    Female,
-    Male,
-    Mix,
-    Unknown
+  Female,
+  Male,
+  Mix,
+  Unknown
 }

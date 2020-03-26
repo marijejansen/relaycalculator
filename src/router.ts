@@ -2,12 +2,12 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/home.vue";
 import ViewTimes from "./views/view-times.vue";
-import Calculate from './views/calculate';
+import Calculate from "./views/calculate";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -15,20 +15,20 @@ export default new Router({
       component: Home
     },
     {
-      path: '/view-times',
-      name: 'viewtimes',
+      path: "/view-times",
+      name: "viewtimes",
       component: ViewTimes,
       meta: {
-        requireAuth: true,
-      },
+        requireAuth: true
+      }
     },
     {
-      path: '/calculate',
-      name: 'calculate',
+      path: "/calculate",
+      name: "calculate",
       component: Calculate,
       meta: {
-        requireAuth: true,
-      },
-    },
+        requireAuth: true
+      }
+    }
   ]
 });

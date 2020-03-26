@@ -9,10 +9,13 @@
         <div class="remove" style="visibility:hidden;">&#10006;</div>
       </span>
 
-      <single-selection v-for="swimmer in selectedSwimmers" :key="swimmer.id" :swimmer-data="swimmer"></single-selection>
+      <single-selection
+        v-for="swimmer in selectedSwimmers"
+        :key="swimmer.id"
+        :swimmer-data="swimmer"
+      ></single-selection>
     </div>
   </div>
 </template>
 
-<script lang="ts" src="./selection.ts">
-</script>
+<script lang="ts" src="./selection.ts"></script>

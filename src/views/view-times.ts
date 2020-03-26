@@ -1,10 +1,9 @@
 import { Component, Vue } from "vue-property-decorator";
-import TimesOverview from "../components/times/times-overview"
-
+import TimesOverview from "../components/times/times-overview";
 
 @Component({
-    components: {
-        TimesOverview
-    }
+  components: {
+    TimesOverview
+  }
 })
-export default class ViewTimes extends Vue { }
+export default class ViewTimes extends Vue {}

@@ -13,14 +13,12 @@
         :key="swimmer.id"
         @click="selectSwimmer(swimmer.id)"
       >
-        <div class="name">{{swimmer.firstName}} {{swimmer.lastName}}</div>
-        <div class="club">{{swimmer.clubName}}</div>
-        <div class="year">{{swimmer.birthYear}}</div>
+        <div class="name">{{ swimmer.firstName }} {{ swimmer.lastName }}</div>
+        <div class="club">{{ swimmer.clubName }}</div>
+        <div class="year">{{ swimmer.birthYear }}</div>
       </span>
     </div>
   </div>
 </template>
 
-
-<script lang="ts" src="./search-results.ts">
-</script>
+<script lang="ts" src="./search-results.ts"></script>

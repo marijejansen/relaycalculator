@@ -1,14 +1,12 @@
 <template>
-
-<span class="row" v-bind:class="{disabled: !selected}">
-    <label :for='"check_" + swimmer.id'>
-      <input v-model="select" :id='"check_" + swimmer.id' type="checkbox" />
-      <div class="name">{{name}}</div>
-      <div class="gender">{{gender}}</div>
-      <div class="age">{{2020 - swimmer.birthYear}}</div>
+  <span class="row" v-bind:class="{ disabled: !selected }">
+    <label :for="'check_' + swimmer.id">
+      <input v-model="select" :id="'check_' + swimmer.id" type="checkbox" />
+      <div class="name">{{ name }}</div>
+      <div class="gender">{{ gender }}</div>
+      <div class="age">{{ 2020 - swimmer.birthYear }}</div>
     </label>
-</span>
+  </span>
 </template>
 
-<script lang="ts" src="./single-selection-calc.ts">
-</script>
+<script lang="ts" src="./single-selection-calc.ts"></script>

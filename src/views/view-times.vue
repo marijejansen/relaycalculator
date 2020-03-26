@@ -1,8 +1,7 @@
 <template>
   <div>
-   <times-overview class="times-overview"></times-overview>
+    <times-overview class="times-overview"></times-overview>
   </div>
 </template>
 
-<script lang="ts" src="./view-times.ts">
-</script>
+<script lang="ts" src="./view-times.ts"></script>
