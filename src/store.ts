@@ -66,6 +66,9 @@ export default new Vuex.Store({
     stopLoading(state) {
       state.loading = false;
     },
+    setCourse(state, course){
+      state.course = course;
+    },
     addToSelectedForCalculation(state, swimmerId) {
       if (state.calculationSelection.find(s => s == swimmerId) == null) {
         state.calculationSelection.push(swimmerId);

@@ -15,6 +15,7 @@ export default class CalcTop extends Vue {
 
   set isShortCourse(isShort: boolean) {
     this.course = isShort ? Course.ShortCourse : Course.LongCourse;
+    store.commit("setCourse", this.course);
   }
 
   get relays() {
