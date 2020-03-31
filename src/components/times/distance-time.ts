@@ -21,7 +21,7 @@ export default class DistanceTime extends Mixins(
   }
 
   set time(newTime: string) {
-    if (newTime != "") {
+    if (newTime != "" && isNaN) {
       this.tempTime = this.toSeconds(newTime);
     }
   }
