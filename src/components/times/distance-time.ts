@@ -3,10 +3,8 @@ import { DistanceWithTime } from "@/models/distance-with-time";
 
 @Component
 export default class DistanceTime extends Vue {
-  private stringTime: string = "";
-
-  @Prop()
-  distanceTime!: number;
+  
+  private tempTime: number = 0;
 
   @Prop()
   distanceWithTime!: DistanceWithTime;
@@ -21,13 +19,13 @@ export default class DistanceTime extends Vue {
 
   set time(newTime: string) {
     if (newTime != "") {
-      this.stringTime = newTime;
+      this.tempTime = this.toSeconds(newTime);
     }
   }
 
   setTime() {
-    var numberTime = this.toSeconds(this.stringTime);
-    if (!isNaN(numberTime)) {
+    var numberTime = this.tempTime;
+    if (!isNaN(numberTime) && numberTime != 0 && numberTime !== this.distanceWithTime.time) {
       this.distanceWithTime.time = numberTime;
       this.updateTime({
         distance: this.distanceWithTime.distance,
