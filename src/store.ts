@@ -39,7 +39,7 @@ export default new Vuex.Store({
       state.selectedSwimmers = state.selectedSwimmers.filter(
         sw => sw.id !== swimmerId
       );
-      state.loadedTimes = state.loadedTimes.filter(t => t == swimmerId);
+      state.loadedTimes = state.loadedTimes.filter(t => t !== swimmerId);
     },
     addSCTimes(state, payload) {
       var index = state.selectedSwimmers.findIndex(sw => sw.id == payload.id);
