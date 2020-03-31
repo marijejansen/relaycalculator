@@ -26,7 +26,7 @@ export default class DistanceTime extends Mixins(
     }
   }
 
-  setTime() {
+  setTime(e: Event) {
     var numberTime = this.tempTime;
     if (!isNaN(numberTime) && numberTime != 0 && numberTime !== this.distanceWithTime.time) {
       this.distanceWithTime.time = numberTime;
@@ -34,6 +34,8 @@ export default class DistanceTime extends Mixins(
         distance: this.distanceWithTime.distance,
         time: this.distanceWithTime.time
       });
+    } else {
+      (e.target as HTMLInputElement).value = this.time;
     }
   }
 }
