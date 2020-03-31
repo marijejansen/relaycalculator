@@ -8,8 +8,8 @@ export default class SearchTop extends Vue {
   years: number[] = this.getLastYears();
 
   search: NameForSearch = {
-    firstName: "marije",
-    lastName: "jansen"
+    firstName: "",
+    lastName: ""
   };
 
   async startSearch() {
