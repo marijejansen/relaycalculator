@@ -171,6 +171,7 @@ export default new Vuex.Store({
       var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
       swimmers.forEach((swimmer: Swimmer) => {
         this.commit("addToSelectedSwimmers", swimmer);
+        this.commit("setTimesLoaded", swimmer.id);
       });
     }
   }
