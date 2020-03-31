@@ -15,7 +15,7 @@ class TimeFormatMixin extends Vue {
     var sec = length === 1 ? Number(split[0]) : Number(split[length - 2]);
     var min = length > 2 ? Number(split[length - 3]) : 0;
 
-    if (length == 2 && time.includes(":")) {
+    if (length == 2 && (time.includes(":") || Number(split[0]) < 10)) {
       mil = 0;
       sec = Number(split[1]);
       min = Number(split[0]);
