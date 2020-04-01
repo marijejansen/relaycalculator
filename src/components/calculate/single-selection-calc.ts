@@ -7,13 +7,12 @@ import NameFormatMixin from "@/mixins/name-format-mixin";
 
 @Component
 export default class SingleSelectionCalc extends Mixins(
-  GenderFormatMixin,
-  NameFormatMixin
-) {
+  GenderFormatMixin, NameFormatMixin) {
+
   @Prop()
   swimmerData!: Swimmer;
 
-  selected: boolean = false;
+  private selected: boolean = store.getters.isSelected(this.swimmer.id); 
 
   get swimmer() {
     return this.swimmerData;
@@ -38,5 +37,10 @@ export default class SingleSelectionCalc extends Mixins(
 
   get select() {
     return this.selected;
+  }
+
+  mounted() {
+    store.commit('addToSelectedForCalculation', this.swimmer.id);
+    this.selected = store.getters.isSelected(this.swimmer.id);
   }
 }

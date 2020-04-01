@@ -127,6 +127,9 @@ export default new Vuex.Store({
     },
     isLoading(state) {
       return state.loading;
+    },
+    isSelected: state => (id: number) => {
+      return state.calculationSelection.find(t => t == id) != null;
     }
   },
 

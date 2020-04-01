@@ -1,17 +1,18 @@
 import DistanceTime from "../times/distance-time";
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Mixins } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
 import { Course } from "@/models/course";
 import { DistanceWithTime } from "@/models/distance-with-time";
 import store from "@/store";
 import { CourseTimes } from "@/models/coursetimes";
+import NameFormatMixin from '@/mixins/name-format-mixin';
 
 @Component({
   components: {
     DistanceTime
   }
 })
-export default class SwimmerTimes extends Vue {
+export default class SwimmerTimes extends Mixins(NameFormatMixin) {
   @Prop()
   private course!: Course;
 
@@ -36,6 +37,10 @@ export default class SwimmerTimes extends Vue {
 
   get swimmer() {
     return this.swimmerData;
+  }
+
+  get fullName(){
+    return this.getFullName(this.swimmer.firstName, this.swimmer.lastName);
   }
 
   get courseTimes() {

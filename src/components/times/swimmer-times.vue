@@ -1,6 +1,6 @@
 <template>
   <span class="row">
-    <div class="name">{{ swimmer.firstName }} {{ swimmer.lastName }}</div>
+    <div class="name">{{fullName}}</div>
     <distance-time
       class=""
       v-for="distance in distances"
