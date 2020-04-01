@@ -1,5 +1,5 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
-import store from "@/store";
+import store from "@/store/index";
 import { NameForSearch } from "@/models/name-for-search";
 import searchRepository from "@/repositories/search-repository";
 

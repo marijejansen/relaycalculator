@@ -1,6 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
-import store from "@/store";
+import store from "@/store/index";
 import { Course } from "@/models/course";
 import SwimmerTimes from "@/components/times/swimmer-times";
 

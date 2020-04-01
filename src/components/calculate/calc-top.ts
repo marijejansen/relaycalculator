@@ -1,6 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Relay, RelayStrings } from "@/models/relay";
-import store from "@/store";
+import store from "@/store/index";
 import { Course } from "@/models/course";
 
 @Component

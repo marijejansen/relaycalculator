@@ -2,7 +2,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
 import SingleSelectionCalc from "@/components/calculate/single-selection-calc";
 import CalcResult from "@/components/calculate/calc-result";
-import store from "@/store";
+import store from "@/store/index";
 import { RelayTeam } from "@/models/relay-team";
 import { Relay } from "@/models/relay";
 import { Stroke } from "@/models/stroke";

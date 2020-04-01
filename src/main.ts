@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./relay-calculator-app.vue";
 import router from "./router";
-import store from "./store";
+import store from "@/store/index";
 import BootstrapVue from "bootstrap-vue";
 
 Vue.config.productionTip = false;

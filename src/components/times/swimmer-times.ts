@@ -3,7 +3,7 @@ import { Component, Vue, Prop, Mixins } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
 import { Course } from "@/models/course";
 import { DistanceWithTime } from "@/models/distance-with-time";
-import store from "@/store";
+import store from "@/store/index";
 import { CourseTimes } from "@/models/coursetimes";
 import NameFormatMixin from '@/mixins/name-format-mixin';
 

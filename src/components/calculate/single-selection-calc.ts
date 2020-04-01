@@ -2,7 +2,7 @@ import { Component, Vue, Prop, Mixins } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
 import { Gender } from "@/models/gender";
 import GenderFormatMixin from "@/mixins/gender-format-mixin";
-import store from "@/store";
+import store from "@/store/index";
 import NameFormatMixin from "@/mixins/name-format-mixin";
 
 @Component

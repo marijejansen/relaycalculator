@@ -1,6 +1,6 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import SingleSelection from "@/components/search/single-selection.vue";
-import store from "@/store";
+import store from "@/store/index";
 import { Swimmer } from "@/models/swimmer";
 
 @Component({ components: { SingleSelection } })

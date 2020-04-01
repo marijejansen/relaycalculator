@@ -4,7 +4,7 @@ import TimeFormatMixin from "@/mixins/time-format-mixin";
 import SingleResultName from "@/components/calculate/single-result-name";
 
 import { RelayTeam } from "@/models/relay-team";
-import store from "@/store";
+import store from "@/store/index";
 import GenderFormatMixin from "@/mixins/gender-format-mixin";
 
 @Component({ components: { SingleResultName } })

@@ -1,5 +1,5 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
-import store from "@/store";
+import store from "@/store/index";
 import { Swimmer } from "@/models/swimmer";
 
 @Component
