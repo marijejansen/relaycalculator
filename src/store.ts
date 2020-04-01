@@ -4,7 +4,6 @@ import { Swimmer } from "@/models/swimmer";
 import searchRepository from "./repositories/search-repository";
 import { RelayTeam } from "./models/relay-team";
 import { CalculationRequest } from "./models/calculation-request";
-import { Stroke } from "./models/stroke";
 import { Course } from "./models/course";
 import calculateRepository from "./repositories/calculate-repository";
 import { Relay } from "./models/relay";
@@ -130,7 +129,8 @@ export default new Vuex.Store({
     },
     isSelected: state => (id: number) => {
       return state.calculationSelection.find(t => t == id) != null;
-    }
+    },
+    getRelay: state => state.relay
   },
 
   actions: {

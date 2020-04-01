@@ -35,4 +35,8 @@ export default class CalcTop extends Vue {
   relayLabel(relay: string) {
     return RelayStrings.get((<any>Relay)[relay]);
   }
+
+  mounted(){
+    this.relayPick = store.getters.getRelay;
+  }
 }
