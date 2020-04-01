@@ -12,7 +12,10 @@
   }
   
   .times-overview span.row .name {
-    flex: 1.5;
+    flex: 2
+  ;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .times-overview span.row div {
