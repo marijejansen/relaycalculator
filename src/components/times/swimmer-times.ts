@@ -5,7 +5,7 @@ import { Course } from "@/models/course";
 import { DistanceWithTime } from "@/models/distance-with-time";
 import store from "@/store/index";
 import { CourseTimes } from "@/models/coursetimes";
-import NameFormatMixin from '@/mixins/name-format-mixin';
+import NameFormatMixin from "@/mixins/name-format-mixin";
 
 @Component({
   components: {
@@ -39,7 +39,7 @@ export default class SwimmerTimes extends Mixins(NameFormatMixin) {
     return this.swimmerData;
   }
 
-  get fullName(){
+  get fullName() {
     return this.getFullName(this.swimmer.firstName, this.swimmer.lastName);
   }
 

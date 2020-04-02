@@ -1,27 +1,34 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
-import store from "@/store/index";
 import { NameForSearch } from "@/models/name-for-search";
-import searchRepository from "@/repositories/search-repository";
+import { namespace } from 'vuex-class';
+import { Swimmer } from '@/models/swimmer';
+import store from '@/store/index';
+const search = namespace('search');
 
 @Component
 export default class SearchTop extends Vue {
-  years: number[] = this.getLastYears();
 
-  search: NameForSearch = {
+  private years: number[] = this.getLastYears();
+
+  private search: NameForSearch = {
     firstName: "",
     lastName: ""
   };
 
-  async startSearch() {
-    //TODO: naar store?
+  private year: number = store.getters.getYear;
 
-    store.commit("isLoading");
-    await searchRepository
-      .getSearch(this.search.firstName, this.search.lastName)
-      .then(response => {
-        store.commit("updateSearchResult", response);
-      })
-      .then(() => store.commit("stopLoading"));
+  private updateYear(year: number) {
+    store.commit('updateYear', year)
+  }
+
+  @search.Mutation('updateSearchResult')
+  private updateSearch(swimmers: Swimmer[]) {}
+
+  @search.Action('getSearchResults')
+  async getSearchResults(nameForSearch: NameForSearch){}
+
+  private startSearch() {
+    this.getSearchResults(this.search)
   }
 
   getLastYears() {
@@ -34,12 +41,13 @@ export default class SearchTop extends Vue {
   }
 
   get selectedYear() {
-    return store.state.fromYear;
+    return this.year;
   }
 
   set selectedYear(year) {
-    store.commit("updateYear", year);
+    this.updateYear(year);
 
+    //TODO: naar kijken
     if (store.state.selectedSwimmers.length > 0) {
       store.state.selectedSwimmers.forEach(swimmer => {
         store.commit("removeTimesLoaded", swimmer.id);
@@ -49,11 +57,13 @@ export default class SearchTop extends Vue {
       });
     }
   }
+
   get buttonDisabled() {
     return false;
     // return !store.getters.allTimesLoaded;
   }
 
+  //TODO: dit toevoegen
   async loadSwimmers() {
     store.dispatch("getAllFromLocalStorage");
   }

@@ -8,9 +8,17 @@
     </div>
 
     <div>
-        <input placeholder="firstname" v-model="search.firstName" v-on:keyup.enter="startSearch()"/>
-        <input placeholder="lastname" v-model="search.lastName" v-on:keyup.enter="startSearch()"/>
-        <button class="search-btn" @click="startSearch()">search</button>
+      <input
+        placeholder="firstname"
+        v-model="search.firstName"
+        v-on:keyup.enter="startSearch()"
+      />
+      <input
+        placeholder="lastname"
+        v-model="search.lastName"
+        v-on:keyup.enter="startSearch()"
+      />
+      <button class="search-btn" @click="startSearch()">search</button>
     </div>
 
     <div>

@@ -36,7 +36,7 @@ export default class CalcTop extends Vue {
     return RelayStrings.get((<any>Relay)[relay]);
   }
 
-  mounted(){
+  mounted() {
     this.relayPick = store.getters.getRelay;
   }
 }

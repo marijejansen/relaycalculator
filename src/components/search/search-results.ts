@@ -1,13 +1,16 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
 import store from "@/store/index";
+import { namespace } from 'vuex-class/lib/bindings';
+const search = namespace('search');
 
 @Component
 export default class SearchResults extends Vue {
-  private searchResults: Swimmer[] = [];
+
+  @search.Getter('getSearchResult')
+  private searchResults!: Swimmer[];
 
   get searchResult() {
-    this.searchResults = store.state.searchResult;
     return this.searchResults;
   }
 
