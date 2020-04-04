@@ -1,17 +1,26 @@
 import { CalculationState } from "./types";
 import { RootState } from "@/store/types";
 import { GetterTree } from "vuex";
+import { Course } from '@/models/course';
+import { Relay } from '@/models/relay';
+import { RelayTeam } from '@/models/relay-team';
 
 export const getters: GetterTree<CalculationState, RootState> = {
-  getRelay: state => state.relay,
 
-  getCourse: state => state.course,
+  getRelay(state): Relay {
+    return state.relay;
+  },
 
-  getCalculationSelection: state => state.calculationSelection,
+  getCourse(state): Course {
+    return state.course
+  },
 
-  getCalculatedTeams: state => state.calculatedTeams,
+  getCalculationSelection(state): number[] {
+    return state.calculationSelection
+  },
 
-  isSelected: state => (id: number) => {
-    return state.calculationSelection.find(t => t == id) != null;
-  }
+  getCalculatedTeams(state): RelayTeam[] {
+    return state.calculatedTeams
+  },
+  
 };

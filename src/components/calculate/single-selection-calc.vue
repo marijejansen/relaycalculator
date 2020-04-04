@@ -1,5 +1,5 @@
 <template>
-  <span class="row" v-bind:class="{ disabled: !selected }">
+  <span class="row" v-bind:class="{ disabled: !select }">
     <label :for="'check_' + swimmer.id">
       <input v-model="select" :id="'check_' + swimmer.id" type="checkbox" />
       <div class="name">{{ name }}</div>

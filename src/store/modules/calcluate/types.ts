@@ -3,7 +3,7 @@ import { Relay } from "@/models/relay";
 import { Course } from "@/models/course";
 
 export interface CalculationState {
-  calculationSelection: Array<Number>;
+  calculationSelection: Array<number>;
   calculatedTeams: Array<RelayTeam>;
   relay: Relay;
   course: Course;

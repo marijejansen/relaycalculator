@@ -5,7 +5,7 @@ import searchRepository from '@/repositories/search-repository';
 
 export const actions: ActionTree<SearchState, RootState> = {
 
-    async getSearchResults({ state, commit, getters, rootGetters, rootState }, payload) {
+    async getSearchResults({commit}, payload) {
         commit('startLoading', null, { root: true })
         await searchRepository
             .getSearch(payload.firstName, payload.lastName)

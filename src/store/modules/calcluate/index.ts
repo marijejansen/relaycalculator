@@ -9,7 +9,7 @@ import { Relay } from "@/models/relay";
 import { Course } from "@/models/course";
 
 export const state: CalculationState = {
-  calculationSelection: Array<Number>(),
+  calculationSelection: Array<number>(),
   calculatedTeams: Array<RelayTeam>(),
   relay: Relay.Free200,
   course: Course.ShortCourse

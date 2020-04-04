@@ -9,15 +9,15 @@ export default class SingleSelection extends Vue {
   @Prop()
   swimmerData!: Swimmer;
 
+  @search.Getter("timesLoaded")
+  loadedTimes!: number[];
+
   get swimmer() {
     return this.swimmerData;
   }
 
-  @search.Getter("timesLoaded")
-  private getTimesLoaded(swimmerId: number) {}
-
-  get timesLoaded(){
-    return this.getTimesLoaded(this.swimmer.id);
+  get timesLoaded() {
+    return this.loadedTimes.find(t => t == this.swimmer.id) != null;
   }
 
   removeSwimmer() {

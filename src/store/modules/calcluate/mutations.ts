@@ -7,23 +7,28 @@ import { RelayTeam } from "@/models/relay-team";
 export const mutations: MutationTree<CalculationState> = {
   setCourse: state => (course: Course) => (state.course = course),
 
-  setRelay: state => (relay: Relay) => (state.relay = relay),
+  setRelay(state, relay) {
+    state.relay = relay
+  },
 
-  addToSelectedForCalculation: state => (swimmerId: number) => {
+  addToSelectedForCalculation(state, swimmerId){
     if (state.calculationSelection.find(s => s == swimmerId) == null) {
       state.calculationSelection.push(swimmerId);
     }
   },
 
-  addToCalculatedTeams: state => (team: RelayTeam) => {
-    state.calculatedTeams.push(team);
-  },
-
-  removeFromSelectedForCalculation: state => (swimmerId: number) => {
+  removeFromSelectedForCalculation(state, swimmerId) {
     state.calculationSelection = state.calculationSelection.filter(
       s => s !== swimmerId
     );
   },
 
-  emptyCalculatedTeams: state => (state.calculatedTeams = [])
+  addToCalculatedTeams(state, team){
+    state.calculatedTeams.push(team);
+  },
+
+
+  emptyCalculatedTeams(state){
+    state.calculatedTeams = []
+  }
 };

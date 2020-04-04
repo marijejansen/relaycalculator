@@ -13,18 +13,17 @@ export default class CalcOverview extends Vue {
   private selectedSwimmersList: Swimmer[] = [];
 
   @calculate.Getter('getCalculatedTeams')
-  private relayTeams: RelayTeam[] = [];
+  private relayTeams!: RelayTeam[];
+
+  @calculate.Action("calculateBestTeams")
+  calculate() {}
 
   get selectedSwimmers() {
     this.selectedSwimmersList = store.state.selectedSwimmers;
     return this.selectedSwimmersList;
   }
 
-  @calculate.Action("getCalculation")
-  async calculate() {
-  }
-
-  get relays() {
+  get teams() {
     return this.relayTeams;
   }
 }

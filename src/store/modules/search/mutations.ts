@@ -12,7 +12,7 @@ export const mutations: MutationTree<SearchState> = {
       state.loadedTimes.push(swimmerId);
     }
   },
-  removeTimesLoaded: state => (swimmerId: number) => {
+  removeTimesLoaded(state, swimmerId) {
     state.loadedTimes = state.loadedTimes.filter(t => t !== swimmerId);
   }
 };

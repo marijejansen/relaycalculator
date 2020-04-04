@@ -8,7 +8,7 @@ import { Swimmer } from '@/models/swimmer';
 
 export const actions: ActionTree<CalculationState, RootState> = {
 
-  getCalculation: ({ state, commit, getters, rootGetters}) => () => {
+  calculateBestTeams: ({ state, commit, getters, rootGetters}) => () => {
 
     commit('startLoading', null, { root: true })
 

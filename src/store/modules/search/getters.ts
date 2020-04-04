@@ -9,8 +9,8 @@ export const getters: GetterTree<SearchState, RootState> = {
     return state.searchResult
   },
 
-  timesLoaded: state => (swimmerId: number) => {
-    return state.loadedTimes.find(t => t == swimmerId) != null;
+  timesLoaded(state) {
+    return state.loadedTimes;
   },
 
   allTimesLoaded: (state, rootGetters) => {

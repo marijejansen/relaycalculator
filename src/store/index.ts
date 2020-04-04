@@ -21,7 +21,7 @@ const store: StoreOptions<RootState> = {
   },
 
   mutations: {
-    
+
     updateYear(state, year) {
       console.log("updateYear");
       state.fromYear = year;
@@ -36,7 +36,7 @@ const store: StoreOptions<RootState> = {
       }
     },
 
-    removeFromSelectedSwimmers: state => (swimmerId: number) => {
+    removeFromSelectedSwimmers(state, swimmerId) {
       state.selectedSwimmers = state.selectedSwimmers.filter(
         sw => sw.id !== swimmerId
       );
@@ -56,25 +56,28 @@ const store: StoreOptions<RootState> = {
 
     stopLoading: state => (state.loading = false)
   },
+
   actions: {
 
-    updateWithTimes({ commit, getters, dispatch }, swimmerId) {
-        var year = getters.getYear;
-        searchRepository
-          .getShortCourseTimes(swimmerId, year)
-          .then(response => {
-            commit("addSCTimes", { id: swimmerId, courseTimes: response });
-          })
-          .then(() =>
-            searchRepository
-              .getLongCourseTimes(swimmerId, year)
-              .then(response => {
-                commit("addLCTimes", { id: swimmerId, courseTimes: response });
-              })
-          )
-          .then(() => commit("setTimesLoaded", swimmerId))
-          .then(() => dispatch("addToLocalStorage", swimmerId));
-      },
+    async updateWithTimes({ commit, getters }, swimmerId) {
+      var year = getters.getYear;
+
+      await searchRepository.getShortCourseTimes(swimmerId, year)
+        .then((response) => {
+          commit("addSCTimes", { id: swimmerId, courseTimes: response })
+        });
+
+      await searchRepository.getLongCourseTimes(swimmerId, year)
+        .then((response) => {
+          commit("addLCTimes", { id: swimmerId, courseTimes: response });
+        });
+
+      return "gelukt";
+
+      // TODO: naar local storage
+      // .then(() => dispatch("addToLocalStorage", swimmerId));
+    },
+
     //   addToLocalStorage({}, swimmerId) {
     //     //TODO: naar sessionStorage!
     //     var swimmersStorage = localStorage.getItem(`swimmers`);
@@ -84,6 +87,7 @@ const store: StoreOptions<RootState> = {
     //       localStorage.setItem("swimmers", JSON.stringify(swimmers));
     //     }
     //   },
+
     //   getFromLocalStorage({}, swimmerId) {
     //     //TODO: naar sessionStorage!
     //     var swimmersStorage = localStorage.getItem("swimmers");
@@ -91,6 +95,7 @@ const store: StoreOptions<RootState> = {
     //     var found = swimmers.find((sw: Swimmer) => sw.id == swimmerId);
     //     return found;
     //   },
+
     //   getAllFromLocalStorage() {
     //     //TODO: naar sessionStorage!
     //     var swimmersStorage = localStorage.getItem("swimmers");
@@ -101,15 +106,19 @@ const store: StoreOptions<RootState> = {
     //     });
     //   }
   },
+  
   getters: {
-    getAllSelected: state => state.selectedSwimmers,
-
-    getSelectedById: state => (id: number) => {
-      state.selectedSwimmers.find(s => s.id == id);
+    getAllSelected(state){
+      return state.selectedSwimmers
     },
-    getYear: state => state.fromYear,
-    
-    isLoading: state => state.loading
+
+    getYear(state) {
+      return state.fromYear;
+    },
+
+    isLoading(state) {
+      return state.loading
+    } 
   }
 };
 
