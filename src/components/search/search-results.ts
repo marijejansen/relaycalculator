@@ -11,22 +11,16 @@ export default class SearchResults extends Vue {
   @search.Getter('getSearchResult')
   private searchResults!: Swimmer[];
 
+  @search.Mutation("setTimesLoaded")
+  setTimesLoaded(swimmerId: number){} 
+
   get searchResult() {
     return this.searchResults;
   }
 
-  @search.Mutation("setTimesLoaded")
-  setTimesLoaded(swimmerId: number){}
-  
-
   selectSwimmer(id: number) {
     let swimmer = this.searchResults.find(s => s.id == id);
     store.commit("addToSelectedSwimmers", swimmer);
-    var swimmerList: Swimmer[] = [];
-    if(swimmer){
-      swimmerList.push(swimmer);
-      localStorageRepo.addToLocalStorage(swimmer);
-    }
     this.getTimes(id);
   }
 
@@ -34,6 +28,13 @@ export default class SearchResults extends Vue {
     await store.dispatch("updateWithTimes", swimmerId)
       .then(() => {
         this.setTimesLoaded(swimmerId);
+      })
+      .then(() => {
+        const swimmers = store.getters.getAllSelected;
+        const swimmer = swimmers.find((sw: Swimmer) => sw.id = swimmerId);
+        if(swimmer){
+          localStorageRepo.addToLocalStorage(swimmer);
+        }
       })
   }
 }

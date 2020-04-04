@@ -71,40 +71,7 @@ const store: StoreOptions<RootState> = {
         .then((response) => {
           commit("addLCTimes", { id: swimmerId, courseTimes: response });
         });
-
-      return "gelukt";
-
-      // TODO: naar local storage
-      // .then(() => dispatch("addToLocalStorage", swimmerId));
     },
-
-    //   addToLocalStorage({}, swimmerId) {
-    //     //TODO: naar sessionStorage!
-    //     var swimmersStorage = localStorage.getItem(`swimmers`);
-    //     var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
-    //     if (swimmers.find((sw: Swimmer) => sw.id == swimmerId) == null) {
-    //       swimmers.push(this.getters.getSelectedById(swimmerId));
-    //       localStorage.setItem("swimmers", JSON.stringify(swimmers));
-    //     }
-    //   },
-
-    //   getFromLocalStorage({}, swimmerId) {
-    //     //TODO: naar sessionStorage!
-    //     var swimmersStorage = localStorage.getItem("swimmers");
-    //     var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
-    //     var found = swimmers.find((sw: Swimmer) => sw.id == swimmerId);
-    //     return found;
-    //   },
-
-    //   getAllFromLocalStorage() {
-    //     //TODO: naar sessionStorage!
-    //     var swimmersStorage = localStorage.getItem("swimmers");
-    //     var swimmers = swimmersStorage ? JSON.parse(swimmersStorage) : Array();
-    //     swimmers.forEach((swimmer: Swimmer) => {
-    //       this.commit("addToSelectedSwimmers", swimmer);
-    //       this.commit("setTimesLoaded", swimmer.id);
-    //     });
-    //   }
   },
   
   getters: {
