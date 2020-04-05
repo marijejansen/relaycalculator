@@ -23,7 +23,6 @@ const store: StoreOptions<RootState> = {
   mutations: {
 
     updateYear(state, year) {
-      console.log("updateYear");
       state.fromYear = year;
     },
 

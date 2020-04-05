@@ -16,7 +16,11 @@ export default class CalcOverview extends Vue {
   private relayTeams!: RelayTeam[];
 
   @calculate.Action("calculateBestTeams")
-  calculate() {}
+  private calculateBestTeams() {}
+
+  private calculate(){
+    this.calculateBestTeams();
+  }
 
   get selectedSwimmers() {
     this.selectedSwimmersList = store.state.selectedSwimmers;

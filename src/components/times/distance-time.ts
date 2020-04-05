@@ -25,7 +25,6 @@ export default class DistanceTime extends Mixins(TimeFormatMixin) {
 
   setTime(e: Event) {
     var numberTime = this.tempTime;
-    console.log(numberTime);
     if (
       !isNaN(numberTime) &&
       numberTime != 0 &&

@@ -8,8 +8,7 @@ import { Swimmer } from '@/models/swimmer';
 
 export const actions: ActionTree<CalculationState, RootState> = {
 
-  calculateBestTeams: ({ state, commit, getters, rootGetters}) => () => {
-
+  calculateBestTeams({ state, commit, getters, rootGetters}) {
     commit('startLoading', null, { root: true })
 
     let selectedSwimmers = rootGetters.getAllSelected.filter((s: Swimmer) =>
@@ -28,6 +27,6 @@ export const actions: ActionTree<CalculationState, RootState> = {
           commit('addToCalculatedTeams', team))
       }
       )
-      .then(() => (commit('startLoading', null, { root: true })));
+      .then(() => (commit('stopLoading', null, { root: true })));
   },
 };
