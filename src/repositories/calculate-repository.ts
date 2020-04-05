@@ -11,5 +11,16 @@ export default {
       .then(response => {
         return response.data;
       });
-  }
+  },
+  
+  async getBestTeams(
+    calculationRequest: CalculationRequest
+  ): Promise<RelayTeam[]> {
+    return baseRepository
+      .post(`/Calculation/getBestTeams`, calculationRequest)
+      .then(response => {
+        return response.data;
+      });
+  },
+
 };
