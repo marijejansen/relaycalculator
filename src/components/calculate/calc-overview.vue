@@ -27,7 +27,7 @@
         </span>
 
         <calc-result
-          v-for="team in relays"
+          v-for="team in teams"
           :key="team.id"
           :relay-team="team"
         ></calc-result>

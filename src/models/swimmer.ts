@@ -3,7 +3,7 @@ import { CourseTimes } from "./coursetimes";
 
 export interface Swimmer {
   id: number;
-  position: number,
+  position: number;
   firstName: string;
   lastName: string;
   birthYear: number;

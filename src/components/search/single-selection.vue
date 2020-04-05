@@ -1,5 +1,5 @@
 <template>
-  <span class="row" v-bind:class="{ loaded: timesLoaded }">
+  <span class="row" :class="{ loaded: timesLoaded }">
     <div class="name">{{ swimmer.firstName }} {{ swimmer.lastName }}</div>
     <div class="club">{{ swimmer.clubName }}</div>
     <div class="year">{{ swimmer.birthYear }}</div>
@@ -8,3 +8,4 @@
 </template>
 
 <script lang="ts" src="./single-selection.ts"></script>
+

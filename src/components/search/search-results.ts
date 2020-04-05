@@ -1,13 +1,20 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
-import store from "@/store";
+import store from "@/store/index";
+import { namespace } from 'vuex-class/lib/bindings';
+import localStorageRepo from '@/repositories/storage-repository';
+const search = namespace('search');
 
 @Component
 export default class SearchResults extends Vue {
-  private searchResults: Swimmer[] = [];
+
+  @search.Getter('getSearchResult')
+  private searchResults!: Swimmer[];
+
+  @search.Mutation("setTimesLoaded")
+  setTimesLoaded(swimmerId: number){} 
 
   get searchResult() {
-    this.searchResults = store.state.searchResult;
     return this.searchResults;
   }
 
@@ -18,6 +25,16 @@ export default class SearchResults extends Vue {
   }
 
   async getTimes(swimmerId: number) {
-    store.dispatch("updateWithTimes", swimmerId);
+    await store.dispatch("updateWithTimes", swimmerId)
+      .then(() => {
+        this.setTimesLoaded(swimmerId);
+      })
+      .then(() => {
+        const swimmers = store.getters.getAllSelected;
+        const swimmer = swimmers.find((sw: Swimmer) => sw.id === swimmerId);
+        if(swimmer){
+          localStorageRepo.addOrUpdateInLocalStorage(swimmer);
+        }
+      })
   }
 }

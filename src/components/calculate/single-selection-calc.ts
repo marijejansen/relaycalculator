@@ -1,18 +1,26 @@
 import { Component, Vue, Prop, Mixins } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
-import { Gender } from "@/models/gender";
 import GenderFormatMixin from "@/mixins/gender-format-mixin";
-import store from "@/store";
 import NameFormatMixin from "@/mixins/name-format-mixin";
+import { namespace } from 'vuex-class';
+const calculate = namespace('calculate');
 
 @Component
-export default class SingleSelectionCalc extends Mixins(
-  GenderFormatMixin, NameFormatMixin) {
+export default class SingleSelectionCalc extends Mixins
+  (GenderFormatMixin, NameFormatMixin) 
+  {
 
   @Prop()
   swimmerData!: Swimmer;
 
-  private selected: boolean = store.getters.isSelected(this.swimmer.id); 
+  @calculate.Getter("getCalculationSelection")
+  private calculationSelection!: number[];
+
+  @calculate.Mutation('addToSelectedForCalculation')
+  private setSelected(id: number) { }
+
+  @calculate.Mutation('removeFromSelectedForCalculation')
+  private setUnSelected(id: number) { }
 
   get swimmer() {
     return this.swimmerData;
@@ -27,20 +35,19 @@ export default class SingleSelectionCalc extends Mixins(
   }
 
   set select(val: boolean) {
-    this.selected = val;
+    let id = this.swimmer.id;
     if (val == true) {
-      store.commit("addToSelectedForCalculation", this.swimmer.id);
+      this.setSelected(id);
     } else {
-      store.commit("removeFromSelectedForCalculation", this.swimmer.id);
+      this.setUnSelected(id);
     }
   }
 
   get select() {
-    return this.selected;
+    return this.calculationSelection.find((s) => s == this.swimmer.id) != null;
   }
 
   mounted() {
-    store.commit('addToSelectedForCalculation', this.swimmer.id);
-    this.selected = store.getters.isSelected(this.swimmer.id);
+    this.setSelected(this.swimmer.id);
   }
 }

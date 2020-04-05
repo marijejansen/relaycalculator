@@ -1,27 +1,41 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
-import store from "@/store";
 import { NameForSearch } from "@/models/name-for-search";
-import searchRepository from "@/repositories/search-repository";
+import { namespace } from 'vuex-class';
+import { Swimmer } from '@/models/swimmer';
+import store from '@/store/index';
+import storageRepository from '@/repositories/storage-repository';
+const search = namespace('search');
 
 @Component
 export default class SearchTop extends Vue {
-  years: number[] = this.getLastYears();
 
-  search: NameForSearch = {
-    firstName: "",
-    lastName: ""
+  private years: number[] = this.getLastYears();
+
+  private search: NameForSearch = {
+    firstName: "marije ",
+    lastName: "jansen"
   };
 
-  async startSearch() {
-    //TODO: naar store?
+  private year: number = store.getters.getYear;
 
-    store.commit("isLoading");
-    await searchRepository
-      .getSearch(this.search.firstName, this.search.lastName)
-      .then(response => {
-        store.commit("updateSearchResult", response);
-      })
-      .then(() => store.commit("stopLoading"));
+  private updateYear(year: number) {
+    store.commit('updateYear', year)
+  }
+
+  @search.Mutation('removeTimesLoaded')
+  private removeTimesLoaded(id: number) { }
+
+  @search.Mutation("setTimesLoaded")
+  private setTimesLoaded(id: number) { }
+
+  @search.Mutation('updateSearchResult')
+  private updateSearch(swimmers: Swimmer[]) { }
+
+  @search.Action('getSearchResults')
+  async getSearchResults(nameForSearch: NameForSearch) { }
+
+  private startSearch() {
+    this.getSearchResults(this.search)
   }
 
   getLastYears() {
@@ -34,27 +48,39 @@ export default class SearchTop extends Vue {
   }
 
   get selectedYear() {
-    return store.state.fromYear;
+    return this.year;
   }
 
   set selectedYear(year) {
-    store.commit("updateYear", year);
+    this.updateYear(year);
+    this.updateTimes();
+  }
 
-    if (store.state.selectedSwimmers.length > 0) {
-      store.state.selectedSwimmers.forEach(swimmer => {
-        store.commit("removeTimesLoaded", swimmer.id);
-      });
-      store.state.selectedSwimmers.forEach(swimmer => {
-        store.dispatch("updateWithTimes", swimmer.id);
+  private updateTimes() {
+    const swimmers = store.getters.getAllSelected;
+    if (swimmers.length > 0) {
+      swimmers.forEach((swimmer: Swimmer) => {
+        this.removeTimesLoaded(swimmer.id);
+        store.dispatch("updateWithTimes", swimmer.id).then(() => {
+          this.setTimesLoaded(swimmer.id)
+        })
       });
     }
   }
+
+  // TODO: nog iets mee doen
   get buttonDisabled() {
     return false;
     // return !store.getters.allTimesLoaded;
   }
 
-  async loadSwimmers() {
-    store.dispatch("getAllFromLocalStorage");
+  private loadSwimmers() {
+    storageRepository.getAllFromLocalStorage().then(response => {
+      response.forEach((sw : Swimmer) => {
+        store.commit('addToSelectedSwimmers', sw);
+        this.setTimesLoaded(sw.id);
+      });
+    });
   }
+
 }
