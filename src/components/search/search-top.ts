@@ -3,6 +3,7 @@ import { NameForSearch } from "@/models/name-for-search";
 import { namespace } from 'vuex-class';
 import { Swimmer } from '@/models/swimmer';
 import store from '@/store/index';
+import storageRepository from '@/repositories/storage-repository';
 const search = namespace('search');
 
 @Component
@@ -55,7 +56,7 @@ export default class SearchTop extends Vue {
     this.updateTimes();
   }
 
-  private async updateTimes() {
+  private updateTimes() {
     const swimmers = store.getters.getAllSelected;
     if (swimmers.length > 0) {
       swimmers.forEach((swimmer: Swimmer) => {
@@ -67,13 +68,19 @@ export default class SearchTop extends Vue {
     }
   }
 
+  // TODO: nog iets mee doen
   get buttonDisabled() {
     return false;
     // return !store.getters.allTimesLoaded;
   }
 
-  //TODO: dit toevoegen
-  async loadSwimmers() {
-    // store.dispatch("getAllFromLocalStorage");
+  private loadSwimmers() {
+    storageRepository.getAllFromLocalStorage().then(response => {
+      response.forEach((sw : Swimmer) => {
+        store.commit('addToSelectedSwimmers', sw);
+        this.setTimesLoaded(sw.id);
+      });
+    });
   }
+
 }
