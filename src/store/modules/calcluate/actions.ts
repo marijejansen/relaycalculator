@@ -20,7 +20,7 @@ export const actions: ActionTree<CalculationState, RootState> = {
     };
 
     calculateRepository
-      .getBestTeams(calculationRequest)
+      .getBestMastersTeams(calculationRequest)
       .then(response => {
         commit('emptyCalculatedTeams');
         response.forEach(team =>

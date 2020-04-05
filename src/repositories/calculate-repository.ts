@@ -3,11 +3,11 @@ import { CalculationRequest } from "@/models/calculation-request";
 import { RelayTeam } from "@/models/relay-team";
 
 export default {
-  async getBestTeams(
+  async getBestMastersTeams(
     calculationRequest: CalculationRequest
   ): Promise<RelayTeam[]> {
     return baseRepository
-      .post(`/Calculation/getBestTeams`, calculationRequest)
+      .post(`/Calculation/getBestMastersTeams`, calculationRequest)
       .then(response => {
         return response.data;
       });
