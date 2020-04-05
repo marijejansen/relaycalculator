@@ -15,11 +15,14 @@ export default {
     localStorage.setItem("swimmers", JSON.stringify(swimmers));
   },
 
-  async addToLocalStorage(swimmer: Swimmer): Promise<void> {
+  async addOrUpdateInLocalStorage(swimmer: Swimmer): Promise<void> {
     var swimmers = await this.getAllFromLocalStorage();
-    if (swimmers.find((sw: Swimmer) => sw.id == swimmer.id) == null) {
-      swimmers.push(swimmer);
-    }
-    this.storeInLocalStorage(swimmers);
+    var index = swimmers.findIndex(sw => sw.id == swimmer.id);
+      if (index != -1) {
+        swimmers[index] = swimmer;
+      } else {
+        swimmers.push(swimmer);
+      }
+      this.storeInLocalStorage(swimmers);
   }
 }

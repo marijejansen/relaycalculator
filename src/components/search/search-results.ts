@@ -31,9 +31,9 @@ export default class SearchResults extends Vue {
       })
       .then(() => {
         const swimmers = store.getters.getAllSelected;
-        const swimmer = swimmers.find((sw: Swimmer) => sw.id = swimmerId);
+        const swimmer = swimmers.find((sw: Swimmer) => sw.id === swimmerId);
         if(swimmer){
-          localStorageRepo.addToLocalStorage(swimmer);
+          localStorageRepo.addOrUpdateInLocalStorage(swimmer);
         }
       })
   }
