@@ -21,11 +21,17 @@ export default class SearchTop extends Vue {
     store.commit('updateYear', year)
   }
 
+  @search.Mutation('removeTimesLoaded')
+  private removeTimesLoaded(id: number) { }
+
+  @search.Mutation("setTimesLoaded")
+  private setTimesLoaded(id: number) { }
+
   @search.Mutation('updateSearchResult')
-  private updateSearch(swimmers: Swimmer[]) {}
+  private updateSearch(swimmers: Swimmer[]) { }
 
   @search.Action('getSearchResults')
-  async getSearchResults(nameForSearch: NameForSearch){}
+  async getSearchResults(nameForSearch: NameForSearch) { }
 
   private startSearch() {
     this.getSearchResults(this.search)
@@ -46,14 +52,17 @@ export default class SearchTop extends Vue {
 
   set selectedYear(year) {
     this.updateYear(year);
+    this.updateTimes();
+  }
 
-    //TODO: naar kijken
-    if (store.state.selectedSwimmers.length > 0) {
-      store.state.selectedSwimmers.forEach(swimmer => {
-        store.commit("removeTimesLoaded", swimmer.id);
-      });
-      store.state.selectedSwimmers.forEach(swimmer => {
-        store.dispatch("updateWithTimes", swimmer.id);
+  private async updateTimes() {
+    const swimmers = store.getters.getAllSelected;
+    if (swimmers.length > 0) {
+      swimmers.forEach((swimmer: Swimmer) => {
+        this.removeTimesLoaded(swimmer.id);
+        store.dispatch("updateWithTimes", swimmer.id).then(() => {
+          this.setTimesLoaded(swimmer.id)
+        })
       });
     }
   }
@@ -65,6 +74,6 @@ export default class SearchTop extends Vue {
 
   //TODO: dit toevoegen
   async loadSwimmers() {
-    store.dispatch("getAllFromLocalStorage");
+    // store.dispatch("getAllFromLocalStorage");
   }
 }
