@@ -22,7 +22,7 @@
         <span class="row">
           <div class="age">Age</div>
           <div class="gender">Gender</div>
-          <div class="names">Names</div>
+          <div class="names"><div>Names</div></div>
           <div class="time">Time</div>
         </span>
 

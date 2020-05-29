@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuex, { StoreOptions, mapGetters } from "vuex";
+import Vuex, { StoreOptions } from "vuex";
 import { search } from "./modules/search";
 import { calculate } from "./modules/calcluate";
 import { Swimmer } from "@/models/swimmer";

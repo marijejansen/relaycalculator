@@ -5,7 +5,7 @@ import store from "@/store/index";
 
 Vue.config.productionTip = false;
 
-// Vue.use();
+//Vue.use();
 
 new Vue({
   router,

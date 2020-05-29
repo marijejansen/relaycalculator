@@ -1,22 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
 
-
-@import '../scss/colors.scss';
-@import '../scss/general.scss';
-@import '../scss/header.scss';
-@import '../scss/search.scss';
-@import '../scss/button.scss';
-@import '../scss/times-overview.scss';
-@import '../scss/switch-button.scss';
-@import '../scss/calculate.scss';
-@import '../scss/loader.scss';
-@import '../scss/media.scss';
-
-
+@import "../scss/colors.scss";
+@import "../scss/general.scss";
+@import "../scss/header.scss";
+@import "../scss/search.scss";
+@import "../scss/button.scss";
+@import "../scss/times-overview.scss";
+@import "../scss/switch-button.scss";
+@import "../scss/calculate.scss";
+@import "../scss/loader.scss";
+@import "../scss/media.scss";
 
 //relay-calculator-app
 #app {
-
-    font-family: "Poppins", Candara, Verdana, Geneva, Tahoma, sans-serif;
-
-  }
+  font-family: "Poppins", Candara, Verdana, Geneva, Tahoma, sans-serif;
+}
