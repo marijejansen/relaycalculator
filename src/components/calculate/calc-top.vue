@@ -6,6 +6,17 @@
       </router-link>
     </div>
 
+    <div class="relay-type">
+      <label>Calculate for:</label>
+      <select v-model="year">
+        <option
+          v-for="year in years"
+          :key="year"
+          :value="year"
+        >{{year}}</option>
+      </select>
+    </div>
+
     <div class="switch-container">
       <div v-bind:class="{ active: !isShortCourse }">long course</div>
       <label class="switch">
@@ -16,14 +27,13 @@
     </div>
 
     <div class="relay-type">
-      <label>Relay type: </label>
+      <label>Relay type:</label>
       <select v-model="relay" :value="relayLabel(relay)">
         <option
           v-for="thisRelay in relays"
           :key="thisRelay"
           :value="thisRelay"
-          >{{ relayLabel(thisRelay) }}</option
-        >
+        >{{ relayLabel(thisRelay) }}</option>
       </select>
     </div>
   </div>

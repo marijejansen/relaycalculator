@@ -13,11 +13,12 @@ export const actions: ActionTree<CalculationState, RootState> = {
 
     let selectedSwimmers = rootGetters.getAllSelected.filter((s: Swimmer) =>
       state.calculationSelection.includes(s.id));
-      
+
     let calculationRequest: CalculationRequest = {
       swimmers: selectedSwimmers,
       relay: getters.getRelay,
       course: getters.getCourse,
+      calculateForYear: getters.getCalculateForYear
     };
 
     calculateRepository

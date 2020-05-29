@@ -12,7 +12,8 @@ export const state: CalculationState = {
   calculationSelection: Array<number>(),
   calculatedTeams: Array<RelayTeam>(),
   relay: Relay.Free200,
-  course: Course.ShortCourse
+  course: Course.ShortCourse,
+  calculateForYear: new Date().getFullYear(),
 };
 
 export const calculate: Module<CalculationState, RootState> = {

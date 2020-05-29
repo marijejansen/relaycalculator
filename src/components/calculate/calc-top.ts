@@ -14,14 +14,33 @@ export default class CalcTop extends Vue {
   @calculate.Getter('getCourse')
   private course!: Course;
 
+  @calculate.Getter('getCalculateForYear')
+  private forYear!: number;
+
   @calculate.Mutation('setRelay')
   private setRelay(relay: Relay) { }
 
   @calculate.Mutation('setCourse')
   private setCourse(course: Course) { }
 
+  @calculate.Mutation('setCalculateForYear')
+  private setForYear(forYear: number) {}
+
   get isShortCourse() {
     return this.course == Course.ShortCourse;
+  }
+
+  get years() {
+    return this.getNextYears();
+  }
+
+  set year(year: number) {
+    console.log("TEST: year= " + year)
+    this.setForYear(year);
+  }
+
+  get year() {
+    return this.forYear;
   }
 
   set isShortCourse(isShort: boolean) {
@@ -44,5 +63,14 @@ export default class CalcTop extends Vue {
 
   relayLabel(relay: string) {
     return RelayStrings.get((<any>Relay)[relay]);
+  }
+
+  getNextYears() {
+    var years: number[] = [];
+    var thisYear = Number(new Date().getFullYear());
+    for (var i = 0; i < 2; i++) {
+      years.push(thisYear + i);
+    }
+    return years;
   }
 }

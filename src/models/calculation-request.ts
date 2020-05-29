@@ -6,4 +6,5 @@ export interface CalculationRequest {
   swimmers: Swimmer[];
   relay: Relay;
   course: Course;
+  calculateForYear: number;
 }

@@ -7,4 +7,5 @@ export interface CalculationState {
   calculatedTeams: Array<RelayTeam>;
   relay: Relay;
   course: Course;
+  calculateForYear: number;
 }

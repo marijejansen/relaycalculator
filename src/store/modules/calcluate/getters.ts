@@ -22,5 +22,9 @@ export const getters: GetterTree<CalculationState, RootState> = {
   getCalculatedTeams(state): RelayTeam[] {
     return state.calculatedTeams
   },
+
+  getCalculateForYear(state) : number {
+    return state.calculateForYear
+  }
   
 };

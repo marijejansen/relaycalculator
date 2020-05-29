@@ -12,6 +12,10 @@ export const mutations: MutationTree<CalculationState> = {
     state.relay = relay
   },
 
+  setCalculateForYear(state, year: number) {
+    state.calculateForYear = year;
+  },
+
   addToSelectedForCalculation(state, swimmerId: number){
     if (state.calculationSelection.find(s => s == swimmerId) == null) {
       state.calculationSelection.push(swimmerId);
