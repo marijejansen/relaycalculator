@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <header></header>
+    <header>
+      Masters swimming relay calculator
+    </header>
     <router-view />
 
     <!-- //loader -->

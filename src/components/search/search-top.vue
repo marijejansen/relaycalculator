@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <label>Get times from:</label>
+      <label>Get times since:</label>
       <select v-model="selectedYear">
         <option v-for="year in years" v-bind:key="year">{{ year }}</option>
       </select>
