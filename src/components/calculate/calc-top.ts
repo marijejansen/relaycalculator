@@ -35,7 +35,6 @@ export default class CalcTop extends Vue {
   }
 
   set year(year: number) {
-    console.log("TEST: year= " + year)
     this.setForYear(year);
   }
 

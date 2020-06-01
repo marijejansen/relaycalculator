@@ -1,12 +1,13 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Mixins } from "vue-property-decorator";
 import { Swimmer } from "@/models/swimmer";
 import store from "@/store/index";
 import { namespace } from 'vuex-class/lib/bindings';
 import localStorageRepo from '@/repositories/storage-repository';
+import NameFormatMixin from '@/mixins/name-format-mixin';
 const search = namespace('search');
 
 @Component
-export default class SearchResults extends Vue {
+export default class SearchResults extends Mixins(NameFormatMixin) {
 
   @search.Getter('getSearchResult')
   private searchResults!: Swimmer[];
@@ -22,6 +23,10 @@ export default class SearchResults extends Vue {
     let swimmer = this.searchResults.find(s => s.id == id);
     store.commit("addToSelectedSwimmers", swimmer);
     this.getTimes(id);
+  }
+
+  fullName(first: string, last: string) {
+    return this.getFullName(first, last);
   }
 
   async getTimes(swimmerId: number) {

@@ -13,7 +13,7 @@
         :key="swimmer.id"
         @click="selectSwimmer(swimmer.id)"
       >
-        <div class="name">{{ swimmer.firstName }} {{ swimmer.lastName }}</div>
+        <div class="name">{{ fullName(swimmer.firstName, swimmer.lastName) }}</div>
         <div class="club">{{ swimmer.clubName }}</div>
         <div class="year">{{ swimmer.birthYear }}</div>
       </span>

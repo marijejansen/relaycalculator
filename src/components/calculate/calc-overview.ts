@@ -12,6 +12,9 @@ export default class CalcOverview extends Vue {
    
   private selectedSwimmersList: Swimmer[] = [];
 
+  @calculate.Mutation('emptyCalculatedTeams')
+  private emptyCalculatedTeams(){}
+
   @calculate.Getter('getCalculatedTeams')
   private relayTeams!: RelayTeam[];
 
@@ -29,5 +32,9 @@ export default class CalcOverview extends Vue {
 
   get teams() {
     return this.relayTeams;
+  }
+
+  created() {
+    this.emptyCalculatedTeams();
   }
 }
