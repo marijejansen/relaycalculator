@@ -12,8 +12,8 @@ export default class SearchTop extends Vue {
   private years: number[] = this.getLastYears();
 
   private search: NameForSearch = {
-    firstName: "marije ",
-    lastName: "jansen"
+    firstName: "",
+    lastName: ""
   };
 
   private year: number = store.getters.getYear;
