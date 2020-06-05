@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <header>
-      Masters swimming relay calculator
+    <header><div>
+      Masters swimming relay calculator</div>
     </header>
     <router-view />
 

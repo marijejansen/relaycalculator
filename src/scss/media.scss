@@ -4,7 +4,7 @@
   }
 
   .container {
-    margin: 0.8rem;
+    margin: 0.2rem;
     padding: 0.6rem;
   }
 
@@ -12,21 +12,84 @@
     padding: 0.2rem 0.6rem;
   }
 
+  .page-top {
+    justify-content: space-around;
+    > * {
+      flex: auto;
+    }
+  }
+
   @media screen and (max-width: 900px) {
+    body {
+      font-size: 0.8rem;
+      input,
+      button,
+      select {
+        font-size: 0.8rem;
+      }
+      input:nth-of-type(2) {
+        margin-right: 0.1rem;
+      }
+    }
+
     .container {
       margin: 0.6rem;
       padding: 0.4rem;
       flex-direction: column;
     }
 
-    @media screen and (max-width: 600px) {
-      body {
-        font-size: 0.8rem;
+    @media screen and (max-width: 750px) {
+      .page-top input {
+        width: 9rem;
       }
 
-      @media screen and (max-width: 400px) {
-        .result-col {
-          padding: 0.2rem 0.2rem;
+      @media screen and (max-width: 600px) {
+        .page-top {
+          flex-direction: row;
+          flex-wrap: wrap;
+          height: auto;
+
+          padding: 10px 0;
+
+          div:nth-of-type(3) {
+            order: 3;
+          }
+          div:nth-of-type(1) {
+            order: 2;
+          }
+          div:nth-of-type(2) {
+            padding-bottom: 6px;
+          }
+
+          input {
+            width: 12rem;
+          }
+        }
+
+        @media screen and (max-width: 475px) {
+          .result-col {
+            padding: 0.2rem 0.2rem;
+          }
+          .page-top {
+            input {
+              width: 9rem;
+            }
+          }
+
+          header {
+            font-size: 1.3rem;
+            padding: 0 1rem;
+          }
+
+          @media screen and (max-width: 375px) {
+            .page-top input {
+              width: 7rem;
+            }
+
+            header {
+              font-size: 1.2rem;
+            }
+          }
         }
       }
     }

@@ -28,11 +28,16 @@
     }
 
     > .name {
-      flex: 4;
+      flex: 6;
+      white-space: nowrap;
+      overflow: hidden;
     }
   
     > .club {
       flex: 4;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-left: 3px;
     }
   
     > .year {
