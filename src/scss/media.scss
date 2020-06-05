@@ -82,12 +82,23 @@
           }
 
           @media screen and (max-width: 375px) {
+            
+            .container {
+              margin: 0;
+            }
+            
             .page-top input {
               width: 7rem;
             }
 
             header {
               font-size: 1.2rem;
+            }
+
+            .results {
+              span .name {
+                flex: 5;
+              }
             }
           }
         }
