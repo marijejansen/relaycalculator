@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <header><div>
-      Masters swimming relay calculator</div>
+    <header>
+      <div>Masters swimming relay calculator</div>
+      <button @click="getData()" class="zpc-button"><img src="./assets/zpc-logo.svg" width="40px"/></button>
     </header>
     <router-view />
 

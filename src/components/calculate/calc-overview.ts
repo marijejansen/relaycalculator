@@ -21,7 +21,7 @@ export default class CalcOverview extends Vue {
   @calculate.Action("calculateBestTeams")
   private calculateBestTeams() {}
 
-  private calculate(){
+  public calculate(){
     this.calculateBestTeams();
   }
 

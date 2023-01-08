@@ -51,6 +51,12 @@ const store: StoreOptions<RootState> = {
       state.selectedSwimmers[index].longCourseTimes = payload.courseTimes;
     },
 
+    addToLocalStorage(state) {
+      const swimmers = state.selectedSwimmers;
+      swimmers.map(sw => {sw.longCourseTimes == undefined; sw.shortCourseTimes = undefined;})
+      localStorage.setItem("swimmers",JSON.stringify(swimmers));
+    },
+
     startLoading: state => (state.loading = true),
 
     stopLoading: state => (state.loading = false)
@@ -70,7 +76,7 @@ const store: StoreOptions<RootState> = {
         .then((response) => {
           commit("addLCTimes", { id: swimmerId, courseTimes: response });
         });
-    },
+    }
   },
   
   getters: {

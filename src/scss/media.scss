@@ -79,6 +79,9 @@
           header {
             font-size: 1.3rem;
             padding: 0 1rem;
+            div {
+              max-width: 250px;
+            }
           }
 
           @media screen and (max-width: 375px) {
@@ -93,6 +96,9 @@
 
             header {
               font-size: 1.2rem;
+              div {
+                max-width: 200px;
+              }
             }
 
             .results {

@@ -9,7 +9,7 @@ export interface Swimmer {
   birthYear: number;
   gender: Gender;
   clubName: string;
-  shortCourseTimes: CourseTimes;
-  longCourseTimes: CourseTimes;
+  shortCourseTimes?: CourseTimes;
+  longCourseTimes?: CourseTimes;
   time: number;
 }

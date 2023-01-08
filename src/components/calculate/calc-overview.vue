@@ -28,7 +28,7 @@
 
         <calc-result
           v-for="team in teams"
-          :key="team.id"
+          :key="team.ageGroup + team.age + team.gender"
           :relay-team="team"
         ></calc-result>
       </div>
